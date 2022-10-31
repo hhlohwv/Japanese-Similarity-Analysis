@@ -26,7 +26,7 @@ def main():
 
     save_dir = 'script-output'
 
-    # generate_core_vocab_list(subtitle_folder, tagger, save_dir)
+    generate_core_vocab_list(subtitle_folder, tagger, save_dir)
 
     # Importing in already generated lists with lemmas that satisfy
     # all, 90%, or 80% show occurence

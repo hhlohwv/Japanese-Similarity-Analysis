@@ -103,9 +103,9 @@ def main():
             sorted_similarity_values = sorted(similarity_values, reverse=True)
 
             # ignores '1', which is similarity with itself
-            top_3_similar_val = sorted_similarity_values[1:4]  
+            top_4_similar_val = sorted_similarity_values[1:5]  
 
-            for j,x in enumerate(top_3_similar_val):
+            for j,x in enumerate(top_4_similar_val):
                 # pulling index where x is in the similarity array
                 index = np.where(similarity_values == x)[0][0]  # [0][0] is for getting the integer
                 file.write(f'{j+1} {show_list_order[index]}: {x*100:.2f}%\n')

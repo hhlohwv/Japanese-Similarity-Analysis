@@ -50,23 +50,23 @@ def main():
 
     for show in shows_and_lemmas:
         total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
-        TF_IDF = {}
+        tf_idf = {}
         # calculate Term-freq * Inverse document frequency (TF-IDF)
     
         for lemma in total_lemma_occurence:
             if lemma in shows_and_lemmas[show]:
-                TF = shows_and_lemmas[show][lemma] / total_words_in_show
-                IDF = np.log(total_shows / total_lemma_occurence[lemma])
+                tf = shows_and_lemmas[show][lemma] / total_words_in_show
+                idf = np.log(total_shows / total_lemma_occurence[lemma])
                 
-                TF_IDF[lemma] = TF * IDF
+                tf_idf[lemma] = tf * idf
             
             else:
-                TF_IDF[lemma] = 0
+                tf_idf[lemma] = 0
 
             # Note: TF-IDF = 0 if lemma is in all shows, or if it does not
             # appear in a show
 
-        all_shows_TF_IDF[show] = TF_IDF
+        all_shows_TF_IDF[show] = tf_idf
 
     
     # Calculate the cosine similarity between the shows

@@ -4,19 +4,12 @@ each lemma in the shows, and calculating cosine similarities between the
 shows to determine which are the most similar (based on lemmas present)
 """
 
-import matplotlib.pyplot as plt
-import matplotlib as mpl  # for setting rcParams for addcopyfighandler package
-import addcopyfighandler  #not called explicitly, adds ctrl+c feature to plots
-
 import numpy as np
 
 import fugashi  # Mecab wrapper for tokenizer function
 
 # Functions for creating and importing the core vocab list from subtitle shows
 from subtitleparsing import generate_core_vocab_list, import_core_vocab_list, shows_lemma_is_in
-from subtitleparsing import language_hist_occur, language_hist_pos
-
-from domain_similarity_analysis import domain_extract
 
 
 def main():

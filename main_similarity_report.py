@@ -2,9 +2,13 @@
 Script for reading in show subtitles, calculating TF-IDF scores for
 each lemma in the shows, and calculating cosine similarities between the
 shows to determine which are the most similar (based on lemmas present)
+
+Using networkx package for visualizing the similarity connections between
+shows
 """
 
 import numpy as np
+import networkx as nx  # for visualizing similarity results
 
 import fugashi  # Mecab wrapper for tokenizer function
 
@@ -13,17 +17,16 @@ from subtitleparsing import generate_core_vocab_list, import_core_vocab_list, sh
 
 
 def main():
-
-    # Generating list of core vocabulary from all shows in sub folder
+    #%% Generating list of core vocabulary from all shows in sub folder
     subtitle_folder = 'subtitles'
 
     tagger = fugashi.Tagger() # creating tagger object for later use
 
     save_dir = 'script-output'
 
-    generate_core_vocab_list(subtitle_folder, tagger, save_dir)
+    # generate_core_vocab_list(subtitle_folder, tagger, save_dir)
 
-    # Importing in already generated lists with lemmas that satisfy
+    #%% Importing in already generated lists with lemmas that satisfy
     # all, 90%, or 80% show occurence
     shows_and_lemmas, shows_all, shows_90per, \
         shows_80per = import_core_vocab_list(save_dir)
@@ -35,7 +38,7 @@ def main():
     print(f'# of Lemmas in 90% of shows: {len(shows_90per)}')
     print(f'# of Lemmas in 80% of shows: {len(shows_80per)}\n')
 
-    # Calculate TF-IDF for each lemma and generate a square
+    #%% Calculate TF-IDF for each lemma and generate a square
     # maxtrix with values between 0-1 to represent the similarity of the text
 
     total_lemma_occurence = shows_lemma_is_in(shows_and_lemmas)  # dict of {lemmas : # of shows they appear in}
@@ -64,7 +67,7 @@ def main():
         all_shows_TF_IDF[show] = tf_idf
 
     
-    # Calculate the cosine similarity between the shows
+    #%% Calculate the cosine similarity between the shows
     TF_IDF_matrix = np.zeros((total_shows, total_shows))  # empty matrix for storing similarity scores
     show_list_order = list([x for x in all_shows_TF_IDF])  # list to know the order of the rows/columns in TF-IDF matrix
 
@@ -113,6 +116,30 @@ def main():
             file.write('\n')
 
     print('-- Similarity analysis file writing complete --')
+
+    #%% Visualizing Similarity results as a graph
+    G = nx.Graph()  # general network object
+
+    # Creation of nodes for all shows
+    for show in show_list_order:
+        G.add_node(f'{show}')
+
+    
+    # Creating edges with weights equal to the similarity score
+    for i,show1 in enumerate(show_list_order):
+        similarity_values = TF_IDF_matrix[i]
+
+        for index,show2 in enumerate(show_list_order):
+            if show1 == show2:
+                continue
+
+            G.add_edge(show1, show2)
+            G[show1][show2]['weight'] = similarity_values[index]*100
+
+
+    # generate gexf file for viewing in Gephi program
+    nx.write_gexf(G, f'{save_dir}/Show Similarity Graph.gexf')  
+
     return
 
 

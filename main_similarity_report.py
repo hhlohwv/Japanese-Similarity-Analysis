@@ -52,8 +52,8 @@ def main():
     for show in shows_and_lemmas:  # for all lemmas
         total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
         tf_idf = {}
+        
         # calculate Term-freq * Inverse document frequency (TF-IDF)
-    
         for lemma in lemmas_num_of_show_in:
             if lemma in shows_and_lemmas[show]:
                 tf = shows_and_lemmas[show][lemma] / total_words_in_show
@@ -75,7 +75,7 @@ def main():
         df.columns = ['Lemma', 'TF-IDF']
         df.to_csv(f'{save_dir}/TF-IDF Scores/{show}-TF-IDF.csv', encoding='utf_8_sig')
 
-        # Printing out a status line saying how many shows have been processed, overwriting on the same line
+        # Printing out a status line saying how many shows have been processed
         i += 1
         print(f'TF-IDF values calculated for {i}/{num_of_shows} shows')
 

@@ -9,6 +9,7 @@ shows
 
 import numpy as np
 import networkx as nx  # for visualizing similarity results
+import pandas as pd  # data file output as csv
 
 import fugashi  # Mecab wrapper for tokenizer function
 
@@ -41,20 +42,22 @@ def main():
     #%% Calculate TF-IDF for each lemma and generate a square
     # maxtrix with values between 0-1 to represent the similarity of the text
 
-    total_lemma_occurence = shows_lemma_is_in(shows_and_lemmas)  # dict of {lemmas : # of shows they appear in}
-    total_shows = len(shows_and_lemmas)  # number of shows in the subtitle folder
+    lemmas_num_of_show_in = shows_lemma_is_in(shows_and_lemmas)  # dict of {lemmas : # of shows they appear in}
+    num_of_shows = len(shows_and_lemmas)  # number of shows in the subtitle folder
     
-    all_shows_TF_IDF = {}  # empty dict for storing {lemma : TF-IDF value} for every lemma in each show
+    TF_IDF_for_all_shows = {}  # empty dict for storing {lemma : TF-IDF value} for every lemma in each show
+
+    i = 0
 
     for show in shows_and_lemmas:
         total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
         tf_idf = {}
         # calculate Term-freq * Inverse document frequency (TF-IDF)
     
-        for lemma in total_lemma_occurence:
+        for lemma in lemmas_num_of_show_in:
             if lemma in shows_and_lemmas[show]:
                 tf = shows_and_lemmas[show][lemma] / total_words_in_show
-                idf = np.log(total_shows / total_lemma_occurence[lemma])
+                idf = np.log(num_of_shows / lemmas_num_of_show_in[lemma])
                 
                 tf_idf[lemma] = tf * idf
             
@@ -64,21 +67,31 @@ def main():
             # Note: TF-IDF = 0 if lemma is in all shows, or if it does not
             # appear in a show
 
-        all_shows_TF_IDF[show] = tf_idf
+        TF_IDF_for_all_shows[show] = tf_idf
+
+        # Saving TF-IDF scores for lemmas in shows to CSV files
+        data = [list(TF_IDF_for_all_shows[show].keys()),list(TF_IDF_for_all_shows[show].values())]
+        df = pd.DataFrame(data=data).T
+        df.columns = ['Lemma', 'TF-IDF']
+        df.to_csv(f'{save_dir}/TF-IDF Scores/{show}-TF-IDF.csv', encoding='utf_8_sig')
+
+        # Printing out a status line saying how many shows have been processed, overwriting on the same line
+        i += 1
+        print(f'TF-IDF values calculated for {i}/{num_of_shows} shows')
 
     
     #%% Calculate the cosine similarity between the shows
-    TF_IDF_matrix = np.zeros((total_shows, total_shows))  # empty matrix for storing similarity scores
-    show_list_order = list([x for x in all_shows_TF_IDF])  # list to know the order of the rows/columns in TF-IDF matrix
+    TF_IDF_matrix = np.zeros((num_of_shows, num_of_shows))  # empty matrix for storing similarity scores
+    show_list_order = list([x for x in TF_IDF_for_all_shows])  # list to know the order of the rows/columns in TF-IDF matrix
 
     print('-- Beginning Cosine Similarity Calculations --\n')
 
-    for i,show1 in enumerate(all_shows_TF_IDF):
+    for i,show1 in enumerate(TF_IDF_for_all_shows):
         print(f'Calculating similarities to {show1}')
 
-        for j,show2 in enumerate(all_shows_TF_IDF):
-            A_vec = list(all_shows_TF_IDF[show1].values())
-            B_vec = list(all_shows_TF_IDF[show2].values())
+        for j,show2 in enumerate(TF_IDF_for_all_shows):
+            A_vec = list(TF_IDF_for_all_shows[show1].values())
+            B_vec = list(TF_IDF_for_all_shows[show2].values())
             A_dot_B = np.dot(A_vec, B_vec)
 
             A_norm = np.linalg.norm(A_vec)
@@ -89,7 +102,11 @@ def main():
 
             TF_IDF_matrix[i,j] = cos_sim
 
-    print('-- TF-IDF matrix calculation complete --\n')
+    print('-- Cosine Similarity matrix calculation complete --\n')
+
+    # Saving cosine similarity matrix as csv
+    df = pd.DataFrame(data=TF_IDF_matrix, columns=show_list_order, index=show_list_order)
+    df.to_csv(f'{save_dir}/Cosine Similarity matrix.csv')
 
     # For each show, print the next 3 shows that are closest in similarity
     show_similarity_output = f'{save_dir}/Show Similarity Analysis Results.txt'

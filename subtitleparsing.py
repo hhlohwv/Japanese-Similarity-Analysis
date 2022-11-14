@@ -106,7 +106,7 @@ def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
     print('')
     print('Beginning write of shows-and-lemmas dictionary...')
     # Writing shows_and_lemmas dictionary to file
-    with open(f'{save_dir}/shows-and-lemmas.txt', 'w', encoding='UTF-8') as \
+    with open(f'{save_dir}/shows-and-lemmas-dict.txt', 'w', encoding='UTF-8') as \
         save_file:
         save_file.write(json.dumps(shows_and_lemmas))
 
@@ -114,7 +114,7 @@ def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
 
     print('Beginning write of lemmas-all-shows list...')
     # writing lemmas lists to file
-    with open(f'{save_dir}/lemmas-all-shows.txt', 'w', encoding='UTF-8') as \
+    with open(f'{save_dir}/lemmas-in-all-shows.txt', 'w', encoding='UTF-8') as \
         save_file:
         for i in lemmas_all_shows:
             save_file.write(i + '\n')
@@ -122,7 +122,7 @@ def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
     print('File write complete\n')
 
     print('Beginning write of lemmas-90per-shows list...')
-    with open(f'{save_dir}/lemmas-90per-shows.txt', 'w', encoding='UTF-8') as \
+    with open(f'{save_dir}/lemmas-in-90per-shows.txt', 'w', encoding='UTF-8') as \
         save_file:
         for i in lemmas_90per_shows:
             save_file.write(i + '\n')
@@ -131,7 +131,7 @@ def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
 
     print('')
     print('Beginning write of lemmas-80per-shows list...')
-    with open(f'{save_dir}/lemmas-80per-shows.txt', 'w', encoding='UTF-8') as \
+    with open(f'{save_dir}/lemmas-in-80per-shows.txt', 'w', encoding='UTF-8') as \
         save_file:
         for i in lemmas_80per_shows:
             save_file.write(i + '\n')
@@ -167,22 +167,22 @@ def import_core_vocab_list(core_vocab_dir):
 
     """
     # Reading in files
-    with open(f'{core_vocab_dir}/shows-and-lemmas.txt', 'r', encoding='UTF-8') \
+    with open(f'{core_vocab_dir}/shows-and-lemmas-dict.txt', 'r', encoding='UTF-8') \
         as f:
         shows_and_lemmas = f.read()
 
     shows_and_lemmas = json.loads(shows_and_lemmas) # convert back to dict
 
 
-    with open(f'{core_vocab_dir}/lemmas-all-shows.txt', 'r', encoding='UTF-8') \
+    with open(f'{core_vocab_dir}/lemmas-in-all-shows.txt', 'r', encoding='UTF-8') \
         as f:
         lemmas_all_shows = f.read().splitlines() # gets rid of newlines
 
-    with open(f'{core_vocab_dir}/lemmas-90per-shows.txt', 'r', encoding='UTF-8') \
+    with open(f'{core_vocab_dir}/lemmas-in-90per-shows.txt', 'r', encoding='UTF-8') \
         as f:
         lemmas_90per_shows = f.read().splitlines()
 
-    with open(f'{core_vocab_dir}/lemmas-80per-shows.txt', 'r', encoding='UTF-8') \
+    with open(f'{core_vocab_dir}/lemmas-in-80per-shows.txt', 'r', encoding='UTF-8') \
         as f:
         lemmas_80per_shows = f.read().splitlines()
 

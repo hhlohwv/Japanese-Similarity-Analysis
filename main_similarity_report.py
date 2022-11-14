@@ -49,7 +49,7 @@ def main():
 
     i = 0
 
-    for show in shows_and_lemmas:
+    for show in shows_and_lemmas:  # for all lemmas
         total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
         tf_idf = {}
         # calculate Term-freq * Inverse document frequency (TF-IDF)
@@ -81,7 +81,7 @@ def main():
 
     
     #%% Calculate the cosine similarity between the shows
-    TF_IDF_matrix = np.zeros((num_of_shows, num_of_shows))  # empty matrix for storing similarity scores
+    cosine_sim_matrix = np.zeros((num_of_shows, num_of_shows))  # empty matrix for storing similarity scores
     show_list_order = list([x for x in TF_IDF_for_all_shows])  # list to know the order of the rows/columns in TF-IDF matrix
 
     print('-- Beginning Cosine Similarity Calculations --\n')
@@ -100,12 +100,12 @@ def main():
 
             cos_sim = A_dot_B / norm_product
 
-            TF_IDF_matrix[i,j] = cos_sim
+            cosine_sim_matrix[i,j] = cos_sim
 
     print('-- Cosine Similarity matrix calculation complete --\n')
 
     # Saving cosine similarity matrix as csv
-    df = pd.DataFrame(data=TF_IDF_matrix, columns=show_list_order, index=show_list_order)
+    df = pd.DataFrame(data=cosine_sim_matrix, columns=show_list_order, index=show_list_order)
     df.to_csv(f'{save_dir}/Cosine Similarity matrix.csv')
 
     # For each show, print the next 3 shows that are closest in similarity
@@ -117,7 +117,7 @@ def main():
         for i,show in enumerate(show_list_order):
             file.write(f'Top 3 similar shows to {show}:\n')
 
-            similarity_values = TF_IDF_matrix[i]
+            similarity_values = cosine_sim_matrix[i]
 
             # sorts values from greatest -> least
             sorted_similarity_values = sorted(similarity_values, reverse=True)
@@ -144,7 +144,7 @@ def main():
     
     # Creating edges with weights equal to the similarity score
     for i,show1 in enumerate(show_list_order):
-        similarity_values = TF_IDF_matrix[i]
+        similarity_values = cosine_sim_matrix[i]
 
         for index,show2 in enumerate(show_list_order):
             if show1 == show2:

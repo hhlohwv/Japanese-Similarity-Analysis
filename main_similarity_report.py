@@ -25,7 +25,7 @@ def main():
 
     save_dir = 'script-output'
 
-    # generate_core_vocab_list(subtitle_folder, tagger, save_dir)
+    generate_core_vocab_list(subtitle_folder, tagger, save_dir)
 
     #%% Importing in already generated lists with lemmas that satisfy
     # all, 90%, or 80% show occurence
@@ -52,7 +52,7 @@ def main():
     for show in shows_and_lemmas:  # for all lemmas
         total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
         tf_idf = {}
-        
+
         # calculate Term-freq * Inverse document frequency (TF-IDF)
         for lemma in lemmas_num_of_show_in:
             if lemma in shows_and_lemmas[show]:
@@ -81,15 +81,16 @@ def main():
 
     
     #%% Calculate the cosine similarity between the shows
+    # Also generating csv files for lists of words that shows have in common
     cosine_sim_matrix = np.zeros((num_of_shows, num_of_shows))  # empty matrix for storing similarity scores
     show_list_order = list([x for x in TF_IDF_for_all_shows])  # list to know the order of the rows/columns in TF-IDF matrix
 
     print('-- Beginning Cosine Similarity Calculations --\n')
 
     for i,show1 in enumerate(TF_IDF_for_all_shows):
-        print(f'Calculating similarities to {show1}')
-
+        df = pd.DataFrame()
         for j,show2 in enumerate(TF_IDF_for_all_shows):
+            print(f'Calculating similarities between {show1} and {show2}')
             A_vec = list(TF_IDF_for_all_shows[show1].values())
             B_vec = list(TF_IDF_for_all_shows[show2].values())
             A_dot_B = np.dot(A_vec, B_vec)
@@ -101,6 +102,31 @@ def main():
             cos_sim = A_dot_B / norm_product
 
             cosine_sim_matrix[i,j] = cos_sim
+
+            # Determining shared lemmas and writing to file
+            common_list = ['null'] * len(lemmas_num_of_show_in)
+            k = 0
+            if show1 == show2:  # skip to the next if comparing the same show
+                continue
+
+            else:
+                for lemma in TF_IDF_for_all_shows[show2]:
+                    # checking if lemma is present in both shows (based on TF-IDF)
+                    if TF_IDF_for_all_shows[show2][lemma] != 0 and \
+                        TF_IDF_for_all_shows[show1][lemma] != 0:
+                        # Limiting to nouns, verbs, adjectives, and adverbs
+                        if tagger(lemma)[0].feature.pos1 == '名詞' or \
+                            tagger(lemma)[0].feature.pos1 == '動詞' or \
+                                tagger(lemma)[0].feature.pos1 == '形容詞' or \
+                                    tagger(lemma)[0].feature.pos1 == '副詞':
+                                        common_list[k] = lemma
+                                        k += 1
+                                        
+
+            df[f'{show2}'] = common_list
+
+        df.to_csv(f'{save_dir}/Common words/Common words with {show1}.csv', encoding='utf_8_sig')
+                
 
     print('-- Cosine Similarity matrix calculation complete --\n')
 

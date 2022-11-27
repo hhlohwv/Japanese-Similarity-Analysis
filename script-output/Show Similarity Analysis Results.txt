@@ -1,468 +1,474 @@
 Top 3 similar shows to 07-ghost:
-1 drifting-dragons: 4.76%
-2 nagi-no-asukara: 4.63%
-3 kaze-ga-tsuyoku-fuiteiru: 4.14%
-4 dr-stone: 3.95%
+1 drifting-dragons: 4.78%
+2 nagi-no-asukara: 4.67%
+3 kaze-ga-tsuyoku-fuiteiru: 4.16%
+4 dr-stone: 3.96%
 
 Top 3 similar shows to 3-gatsu-no-lion:
-1 barakamon: 3.77%
-2 bocchi-the-rock: 3.34%
-3 takt-op-destiny: 2.56%
-4 mushishi: 2.55%
+1 barakamon: 3.80%
+2 bocchi-the-rock: 3.37%
+3 takt-op-destiny: 2.57%
+4 mushishi: 2.54%
+
+Top 3 similar shows to 7seeds:
+1 tonari-no-kaibutsu-kun: 14.92%
+2 free: 13.86%
+3 mushishi: 5.88%
+4 cider-no-you-ni-kotoba-ga-wakiagaru: 3.60%
 
 Top 3 similar shows to amagi-brilliant-park:
-1 magic-kaito-1412: 7.57%
-2 paripi-koumei: 4.94%
-3 baby-steps: 3.47%
-4 dr-stone: 2.82%
+1 magic-kaito-1412: 7.64%
+2 paripi-koumei: 4.97%
+3 baby-steps: 3.51%
+4 dr-stone: 2.85%
 
 Top 3 similar shows to appare-ranman:
-1 planetes: 2.22%
-2 takt-op-destiny: 1.94%
-3 mushishi: 1.67%
-4 banana-fish: 1.64%
+1 planetes: 2.21%
+2 takt-op-destiny: 1.93%
+3 mushishi: 1.64%
+4 banana-fish: 1.61%
 
 Top 3 similar shows to assassination-classroom:
-1 sayounara-zetsubou-sensei: 5.91%
-2 free: 5.60%
-3 princess-principal: 5.43%
-4 barakamon: 3.88%
+1 sayounara-zetsubou-sensei: 5.86%
+2 free: 5.85%
+3 princess-principal: 5.47%
+4 tantei-wa-mou-shindeiru: 3.88%
 
 Top 3 similar shows to baby-steps:
-1 megalobox: 5.20%
-2 blue-lock: 4.75%
-3 giant-killing: 3.55%
-4 amagi-brilliant-park: 3.47%
+1 megalobox: 5.02%
+2 blue-lock: 4.61%
+3 amagi-brilliant-park: 3.51%
+4 giant-killing: 3.45%
 
 Top 3 similar shows to ballroom-e-youkoso:
-1 tonari-no-kaibutsu-kun: 5.75%
-2 free: 5.71%
-3 great-pretender: 2.92%
-4 megalobox: 2.30%
+1 tonari-no-kaibutsu-kun: 6.05%
+2 free: 5.93%
+3 great-pretender: 2.85%
+4 blue-lock: 2.22%
 
 Top 3 similar shows to banana-fish:
-1 drifting-dragons: 7.87%
+1 drifting-dragons: 7.91%
 2 eighty-six: 7.25%
-3 great-pretender: 5.43%
-4 boku-no-hero-academia: 4.96%
+3 great-pretender: 5.37%
+4 boku-no-hero-academia: 4.97%
 
 Top 3 similar shows to barakamon:
-1 kaze-ga-tsuyoku-fuiteiru: 19.73%
-2 nagi-no-asukara: 18.90%
-3 tamako-love-story: 8.54%
-4 blue-lock: 4.43%
+1 kaze-ga-tsuyoku-fuiteiru: 19.76%
+2 nagi-no-asukara: 19.00%
+3 tamako-love-story: 8.46%
+4 blue-lock: 4.45%
 
 Top 3 similar shows to blue-lock:
-1 megalobox: 6.24%
-2 giant-killing: 4.80%
-3 baby-steps: 4.75%
-4 great-pretender: 4.64%
+1 megalobox: 6.04%
+2 giant-killing: 4.67%
+3 baby-steps: 4.61%
+4 great-pretender: 4.56%
 
 Top 3 similar shows to blue-period:
-1 great-pretender: 4.84%
-2 boku-no-hero-academia: 4.57%
-3 shirobako: 4.43%
-4 id-invaded: 3.08%
+1 great-pretender: 4.89%
+2 boku-no-hero-academia: 4.60%
+3 shirobako: 4.44%
+4 id-invaded: 3.16%
 
 Top 3 similar shows to bocchi-the-rock:
-1 burn-the-witch: 13.97%
-2 no-guns-life: 13.96%
-3 chihayafuru: 12.71%
-4 vanitas-no-karte: 10.85%
+1 no-guns-life: 14.06%
+2 burn-the-witch: 14.02%
+3 chihayafuru: 12.79%
+4 vanitas-no-karte: 10.93%
 
 Top 3 similar shows to boku-no-hero-academia:
-1 mushishi: 7.33%
-2 id-invaded: 6.41%
-3 banana-fish: 4.96%
-4 blue-period: 4.57%
+1 mushishi: 7.34%
+2 id-invaded: 6.57%
+3 banana-fish: 4.97%
+4 blue-period: 4.60%
 
 Top 3 similar shows to bungo-stray-dogs:
-1 tantei-wa-mou-shindeiru: 16.27%
-2 kabukichou-sherlock: 12.13%
-3 id-invaded: 9.59%
-4 banana-fish: 3.34%
+1 tantei-wa-mou-shindeiru: 16.35%
+2 kabukichou-sherlock: 12.17%
+3 id-invaded: 9.77%
+4 banana-fish: 3.31%
 
 Top 3 similar shows to burn-the-witch:
-1 no-guns-life: 48.26%
-2 chihayafuru: 39.02%
-3 vanitas-no-karte: 37.75%
-4 paripi-koumei: 14.24%
+1 no-guns-life: 48.40%
+2 chihayafuru: 39.17%
+3 vanitas-no-karte: 37.87%
+4 paripi-koumei: 14.29%
 
 Top 3 similar shows to chihayafuru:
-1 no-guns-life: 40.78%
-2 burn-the-witch: 39.02%
-3 vanitas-no-karte: 32.17%
-4 bocchi-the-rock: 12.71%
+1 no-guns-life: 40.94%
+2 burn-the-witch: 39.17%
+3 vanitas-no-karte: 32.31%
+4 bocchi-the-rock: 12.79%
 
 Top 3 similar shows to cider-no-you-ni-kotoba-ga-wakiagaru:
-1 fruits-basket: 4.73%
-2 yuru-camp: 3.90%
-3 bocchi-the-rock: 3.87%
-4 mushishi: 2.87%
+1 fruits-basket: 4.80%
+2 bocchi-the-rock: 3.89%
+3 yuru-camp: 3.80%
+4 7seeds: 3.60%
 
 Top 3 similar shows to deca-dence:
-1 vinland-saga: 3.19%
-2 lycoris-recoil: 2.70%
+1 vinland-saga: 3.18%
+2 lycoris-recoil: 2.68%
 3 mawaru-penguindrum: 2.14%
-4 eighty-six: 2.08%
+4 eighty-six: 2.05%
 
 Top 3 similar shows to dr-stone:
-1 lycoris-recoil: 6.12%
-2 fire-force: 4.67%
-3 07-ghost: 3.95%
-4 planetes: 3.23%
+1 lycoris-recoil: 6.19%
+2 fire-force: 4.71%
+3 07-ghost: 3.96%
+4 princess-principal: 3.21%
 
 Top 3 similar shows to drifting-dragons:
-1 banana-fish: 7.87%
-2 burn-the-witch: 7.01%
-3 lycoris-recoil: 5.23%
-4 iron-blooded-orphans: 4.88%
+1 banana-fish: 7.91%
+2 burn-the-witch: 7.06%
+3 lycoris-recoil: 5.24%
+4 iron-blooded-orphans: 4.87%
 
 Top 3 similar shows to eighty-six:
-1 violet-evergarden: 18.66%
+1 violet-evergarden: 18.74%
 2 princess-principal: 8.01%
 3 banana-fish: 7.25%
-4 plunderer: 3.75%
+4 plunderer: 3.74%
 
 Top 3 similar shows to fire-force:
-1 dr-stone: 4.67%
-2 mushishi: 3.83%
-3 kabukichou-sherlock: 3.71%
+1 dr-stone: 4.71%
+2 mushishi: 3.78%
+3 kabukichou-sherlock: 3.75%
 4 vinland-saga: 3.55%
 
 Top 3 similar shows to flying-witch:
-1 tamako-love-story: 3.98%
-2 suisei-no-majo: 3.81%
-3 kuroko-no-basket: 3.80%
-4 peachboy-riverside: 3.17%
+1 tamako-love-story: 4.01%
+2 kuroko-no-basket: 3.82%
+3 suisei-no-majo: 3.36%
+4 peachboy-riverside: 3.19%
 
 Top 3 similar shows to free:
-1 tonari-no-kaibutsu-kun: 46.58%
-2 ballroom-e-youkoso: 5.71%
-3 assassination-classroom: 5.60%
-4 mushishi: 4.31%
+1 tonari-no-kaibutsu-kun: 42.29%
+2 7seeds: 13.86%
+3 ballroom-e-youkoso: 5.93%
+4 assassination-classroom: 5.85%
 
 Top 3 similar shows to fruits-basket:
-1 kaze-ga-tsuyoku-fuiteiru: 6.32%
-2 shirobako: 6.17%
-3 horimiya: 5.71%
-4 cider-no-you-ni-kotoba-ga-wakiagaru: 4.73%
+1 kaze-ga-tsuyoku-fuiteiru: 6.36%
+2 shirobako: 6.19%
+3 horimiya: 5.74%
+4 cider-no-you-ni-kotoba-ga-wakiagaru: 4.80%
 
 Top 3 similar shows to fugou-keiji:
-1 planetes: 10.16%
-2 sayounara-zetsubou-sensei: 7.00%
-3 hibike-euphonium: 5.37%
-4 psycho-pass: 4.65%
+1 planetes: 10.27%
+2 sayounara-zetsubou-sensei: 7.04%
+3 hibike-euphonium: 5.41%
+4 psycho-pass: 4.61%
 
 Top 3 similar shows to giant-killing:
-1 shirobako: 7.61%
-2 megalobox: 5.18%
-3 blue-lock: 4.80%
-4 kuroko-no-basket: 4.68%
+1 shirobako: 7.68%
+2 megalobox: 4.98%
+3 blue-lock: 4.67%
+4 kuroko-no-basket: 4.60%
 
 Top 3 similar shows to gleipnir:
-1 hibike-euphonium: 8.45%
-2 planetes: 5.57%
-3 assassination-classroom: 1.43%
-4 mushishi: 1.27%
+1 hibike-euphonium: 8.50%
+2 planetes: 5.52%
+3 assassination-classroom: 1.41%
+4 mushishi: 1.25%
 
 Top 3 similar shows to great-pretender:
-1 banana-fish: 5.43%
-2 blue-period: 4.84%
-3 blue-lock: 4.64%
+1 banana-fish: 5.37%
+2 blue-period: 4.89%
+3 blue-lock: 4.56%
 4 mushishi: 4.28%
 
 Top 3 similar shows to hibike-euphonium:
-1 gleipnir: 8.45%
-2 fugou-keiji: 5.37%
-3 bocchi-the-rock: 5.26%
-4 usagi-drop: 4.95%
+1 gleipnir: 8.50%
+2 fugou-keiji: 5.41%
+3 bocchi-the-rock: 4.99%
+4 usagi-drop: 4.98%
 
 Top 3 similar shows to horimiya:
-1 fruits-basket: 5.71%
-2 ballroom-e-youkoso: 2.04%
+1 fruits-basket: 5.74%
+2 ballroom-e-youkoso: 2.05%
 3 assassination-classroom: 1.48%
 4 cider-no-you-ni-kotoba-ga-wakiagaru: 0.83%
 
 Top 3 similar shows to hyouka:
-1 sayounara-zetsubou-sensei: 2.37%
-2 bungo-stray-dogs: 2.12%
-3 kabukichou-sherlock: 1.77%
+1 sayounara-zetsubou-sensei: 2.38%
+2 bungo-stray-dogs: 2.11%
+3 kabukichou-sherlock: 1.76%
 4 tantei-wa-mou-shindeiru: 1.74%
 
 Top 3 similar shows to id-invaded:
-1 bungo-stray-dogs: 9.59%
-2 tantei-wa-mou-shindeiru: 7.47%
-3 boku-no-hero-academia: 6.41%
-4 kabukichou-sherlock: 5.35%
+1 bungo-stray-dogs: 9.77%
+2 tantei-wa-mou-shindeiru: 7.64%
+3 boku-no-hero-academia: 6.57%
+4 kabukichou-sherlock: 5.43%
 
 Top 3 similar shows to iron-blooded-orphans:
-1 suisei-no-majo: 6.56%
-2 planetes: 5.64%
-3 orbital-children: 5.06%
-4 drifting-dragons: 4.88%
+1 suisei-no-majo: 5.64%
+2 planetes: 5.48%
+3 orbital-children: 4.89%
+4 drifting-dragons: 4.87%
 
 Top 3 similar shows to jujutsu-kaisen:
-1 great-pretender: 2.71%
-2 mushishi: 2.71%
-3 assassination-classroom: 1.82%
+1 mushishi: 2.73%
+2 great-pretender: 2.71%
+3 assassination-classroom: 1.78%
 4 fire-force: 1.71%
 
 Top 3 similar shows to k-return-of-kings:
-1 takt-op-destiny: 5.62%
-2 plunderer: 3.97%
-3 fruits-basket: 3.26%
-4 vinland-saga: 2.81%
+1 takt-op-destiny: 5.65%
+2 plunderer: 4.01%
+3 fruits-basket: 3.28%
+4 vinland-saga: 2.84%
 
 Top 3 similar shows to kabukichou-sherlock:
-1 kobayashi-san-dragon-maid: 12.27%
-2 bungo-stray-dogs: 12.13%
-3 tantei-wa-mou-shindeiru: 8.34%
-4 id-invaded: 5.35%
+1 kobayashi-san-dragon-maid: 12.31%
+2 bungo-stray-dogs: 12.17%
+3 tantei-wa-mou-shindeiru: 8.38%
+4 id-invaded: 5.43%
 
 Top 3 similar shows to kaze-ga-tsuyoku-fuiteiru:
-1 barakamon: 19.73%
-2 nagi-no-asukara: 11.09%
+1 barakamon: 19.76%
+2 nagi-no-asukara: 11.17%
 3 sukitte-ii-na-yo: 9.46%
-4 yowamushi-pedal: 7.25%
+4 yowamushi-pedal: 7.20%
 
 Top 3 similar shows to kobayashi-san-dragon-maid:
-1 kabukichou-sherlock: 12.27%
+1 kabukichou-sherlock: 12.31%
 2 giant-killing: 2.18%
-3 mushishi: 1.53%
+3 mushishi: 1.51%
 4 maou-gakuin-no-futekigousha: 1.51%
 
 Top 3 similar shows to kuroko-no-basket:
-1 giant-killing: 4.68%
-2 megalobox: 4.61%
-3 blue-lock: 3.84%
-4 flying-witch: 3.80%
+1 giant-killing: 4.60%
+2 megalobox: 4.46%
+3 flying-witch: 3.82%
+4 blue-lock: 3.74%
 
 Top 3 similar shows to lycoris-recoil:
-1 dr-stone: 6.12%
-2 drifting-dragons: 5.23%
-3 mawaru-penguindrum: 4.92%
+1 dr-stone: 6.19%
+2 drifting-dragons: 5.24%
+3 mawaru-penguindrum: 4.94%
 4 great-pretender: 3.24%
 
 Top 3 similar shows to magic-kaito-1412:
-1 amagi-brilliant-park: 7.57%
-2 fugou-keiji: 3.62%
-3 bungo-stray-dogs: 3.27%
-4 great-pretender: 2.87%
+1 amagi-brilliant-park: 7.64%
+2 fugou-keiji: 3.63%
+3 bungo-stray-dogs: 3.28%
+4 great-pretender: 2.86%
 
 Top 3 similar shows to mahoutsukai-no-yome:
-1 tales-of-zestiria-the-x: 7.90%
-2 maou-gakuin-no-futekigousha: 3.52%
-3 mushishi: 3.30%
+1 tales-of-zestiria-the-x: 7.89%
+2 maou-gakuin-no-futekigousha: 3.56%
+3 mushishi: 3.29%
 4 flying-witch: 2.36%
 
 Top 3 similar shows to maou-gakuin-no-futekigousha:
-1 peachboy-riverside: 4.73%
-2 mahoutsukai-no-yome: 3.52%
-3 burn-the-witch: 3.11%
+1 peachboy-riverside: 4.78%
+2 mahoutsukai-no-yome: 3.56%
+3 burn-the-witch: 3.13%
 4 sirius-the-jaeger: 2.65%
 
 Top 3 similar shows to mawaru-penguindrum:
-1 lycoris-recoil: 4.92%
-2 kaze-ga-tsuyoku-fuiteiru: 3.95%
-3 k-return-of-kings: 2.19%
+1 lycoris-recoil: 4.94%
+2 kaze-ga-tsuyoku-fuiteiru: 3.98%
+3 k-return-of-kings: 2.20%
 4 deca-dence: 2.14%
 
 Top 3 similar shows to megalobox:
-1 blue-lock: 6.24%
-2 baby-steps: 5.20%
-3 giant-killing: 5.18%
-4 banana-fish: 4.64%
+1 blue-lock: 6.04%
+2 baby-steps: 5.02%
+3 giant-killing: 4.98%
+4 banana-fish: 4.46%
 
 Top 3 similar shows to mushishi:
-1 boku-no-hero-academia: 7.33%
-2 bocchi-the-rock: 5.28%
-3 nagi-no-asukara: 5.23%
-4 sayounara-zetsubou-sensei: 4.88%
+1 boku-no-hero-academia: 7.34%
+2 7seeds: 5.88%
+3 bocchi-the-rock: 5.34%
+4 nagi-no-asukara: 5.01%
 
 Top 3 similar shows to nagi-no-asukara:
-1 barakamon: 18.90%
-2 kaze-ga-tsuyoku-fuiteiru: 11.09%
-3 mushishi: 5.23%
-4 07-ghost: 4.63%
+1 barakamon: 19.00%
+2 kaze-ga-tsuyoku-fuiteiru: 11.17%
+3 mushishi: 5.01%
+4 07-ghost: 4.67%
 
 Top 3 similar shows to no-guns-life:
-1 burn-the-witch: 48.26%
-2 chihayafuru: 40.78%
-3 vanitas-no-karte: 39.92%
-4 paripi-koumei: 14.96%
+1 burn-the-witch: 48.40%
+2 chihayafuru: 40.94%
+3 vanitas-no-karte: 40.04%
+4 paripi-koumei: 15.01%
 
 Top 3 similar shows to orbital-children:
-1 vivy-flourite-eyes-song: 12.92%
-2 planetes: 10.22%
-3 iron-blooded-orphans: 5.06%
+1 vivy-flourite-eyes-song: 12.97%
+2 planetes: 9.97%
+3 iron-blooded-orphans: 4.89%
 4 violet-evergarden: 4.59%
 
 Top 3 similar shows to paripi-koumei:
-1 no-guns-life: 14.96%
-2 burn-the-witch: 14.24%
-3 chihayafuru: 12.24%
-4 vanitas-no-karte: 11.74%
+1 no-guns-life: 15.01%
+2 burn-the-witch: 14.29%
+3 chihayafuru: 12.30%
+4 vanitas-no-karte: 11.78%
 
 Top 3 similar shows to peachboy-riverside:
-1 sirius-the-jaeger: 7.46%
-2 maou-gakuin-no-futekigousha: 4.73%
-3 kabukichou-sherlock: 4.44%
-4 yakusoku-no-neverland: 4.40%
+1 sirius-the-jaeger: 7.35%
+2 maou-gakuin-no-futekigousha: 4.78%
+3 yakusoku-no-neverland: 4.28%
+4 vinland-saga: 4.23%
 
 Top 3 similar shows to planetes:
-1 orbital-children: 10.22%
-2 fugou-keiji: 10.16%
-3 iron-blooded-orphans: 5.64%
-4 gleipnir: 5.57%
+1 fugou-keiji: 10.27%
+2 orbital-children: 9.97%
+3 gleipnir: 5.52%
+4 iron-blooded-orphans: 5.48%
 
 Top 3 similar shows to plunderer:
-1 k-return-of-kings: 3.97%
-2 eighty-six: 3.75%
-3 violet-evergarden: 3.27%
-4 vinland-saga: 3.17%
+1 k-return-of-kings: 4.01%
+2 eighty-six: 3.74%
+3 violet-evergarden: 3.26%
+4 vinland-saga: 3.18%
 
 Top 3 similar shows to princess-principal:
 1 eighty-six: 8.01%
 2 violet-evergarden: 6.94%
-3 suisei-no-majo: 5.61%
-4 assassination-classroom: 5.43%
+3 assassination-classroom: 5.47%
+4 suisei-no-majo: 5.18%
 
 Top 3 similar shows to psycho-pass:
-1 fugou-keiji: 4.65%
-2 planetes: 4.07%
-3 id-invaded: 3.86%
-4 banana-fish: 3.58%
+1 fugou-keiji: 4.61%
+2 planetes: 4.09%
+3 id-invaded: 3.84%
+4 banana-fish: 3.53%
 
 Top 3 similar shows to relife:
 1 usagi-drop: 3.00%
 2 hibike-euphonium: 2.28%
-3 bocchi-the-rock: 1.88%
-4 flying-witch: 1.33%
+3 bocchi-the-rock: 1.85%
+4 flying-witch: 1.32%
 
 Top 3 similar shows to sayounara-zetsubou-sensei:
-1 fugou-keiji: 7.00%
-2 assassination-classroom: 5.91%
-3 mushishi: 4.88%
-4 shirobako: 4.67%
+1 fugou-keiji: 7.04%
+2 assassination-classroom: 5.86%
+3 mushishi: 4.90%
+4 shirobako: 4.70%
 
 Top 3 similar shows to shirobako:
-1 giant-killing: 7.61%
-2 fruits-basket: 6.17%
+1 giant-killing: 7.68%
+2 fruits-basket: 6.19%
 3 yakusoku-no-neverland: 5.99%
 4 kaze-ga-tsuyoku-fuiteiru: 5.07%
 
 Top 3 similar shows to sirius-the-jaeger:
-1 peachboy-riverside: 7.46%
-2 vanitas-no-karte: 5.51%
-3 violet-evergarden: 5.28%
-4 eighty-six: 3.67%
+1 peachboy-riverside: 7.35%
+2 vanitas-no-karte: 5.52%
+3 violet-evergarden: 5.30%
+4 eighty-six: 3.68%
 
 Top 3 similar shows to ssss-dynazenon:
-1 no-guns-life: 9.49%
-2 burn-the-witch: 8.94%
-3 chihayafuru: 7.78%
-4 vanitas-no-karte: 7.30%
+1 no-guns-life: 9.51%
+2 burn-the-witch: 8.96%
+3 chihayafuru: 7.80%
+4 vanitas-no-karte: 7.32%
 
 Top 3 similar shows to suisei-no-majo:
-1 vinland-saga: 8.08%
-2 iron-blooded-orphans: 6.56%
-3 princess-principal: 5.61%
-4 flying-witch: 3.81%
+1 vinland-saga: 7.50%
+2 iron-blooded-orphans: 5.64%
+3 princess-principal: 5.18%
+4 flying-witch: 3.36%
 
 Top 3 similar shows to sukitte-ii-na-yo:
 1 kaze-ga-tsuyoku-fuiteiru: 9.46%
-2 tantei-wa-mou-shindeiru: 4.96%
-3 cider-no-you-ni-kotoba-ga-wakiagaru: 2.44%
-4 sayounara-zetsubou-sensei: 1.62%
+2 tantei-wa-mou-shindeiru: 4.90%
+3 cider-no-you-ni-kotoba-ga-wakiagaru: 2.48%
+4 sayounara-zetsubou-sensei: 1.61%
 
 Top 3 similar shows to summer-time-rendering:
-1 mushishi: 4.13%
-2 07-ghost: 2.69%
-3 flying-witch: 2.44%
+1 mushishi: 4.07%
+2 07-ghost: 2.75%
+3 flying-witch: 2.46%
 4 kuroko-no-basket: 2.01%
 
 Top 3 similar shows to takt-op-destiny:
-1 k-return-of-kings: 5.62%
-2 bocchi-the-rock: 4.46%
-3 hibike-euphonium: 3.52%
-4 banana-fish: 3.50%
+1 k-return-of-kings: 5.65%
+2 bocchi-the-rock: 4.25%
+3 banana-fish: 3.49%
+4 barakamon: 3.48%
 
 Top 3 similar shows to tales-of-zestiria-the-x:
-1 mahoutsukai-no-yome: 7.90%
-2 07-ghost: 2.86%
-3 maou-gakuin-no-futekigousha: 2.09%
-4 peachboy-riverside: 1.89%
+1 mahoutsukai-no-yome: 7.89%
+2 07-ghost: 2.84%
+3 maou-gakuin-no-futekigousha: 2.10%
+4 peachboy-riverside: 1.92%
 
 Top 3 similar shows to tamako-love-story:
-1 barakamon: 8.54%
-2 kaze-ga-tsuyoku-fuiteiru: 5.31%
-3 flying-witch: 3.98%
-4 mushishi: 3.47%
+1 barakamon: 8.46%
+2 kaze-ga-tsuyoku-fuiteiru: 5.41%
+3 flying-witch: 4.01%
+4 mushishi: 3.51%
 
 Top 3 similar shows to tantei-wa-mou-shindeiru:
-1 bungo-stray-dogs: 16.27%
-2 kabukichou-sherlock: 8.34%
-3 id-invaded: 7.47%
-4 sukitte-ii-na-yo: 4.96%
+1 bungo-stray-dogs: 16.35%
+2 kabukichou-sherlock: 8.38%
+3 id-invaded: 7.64%
+4 sukitte-ii-na-yo: 4.90%
 
 Top 3 similar shows to tonari-no-kaibutsu-kun:
-1 free: 46.58%
-2 ballroom-e-youkoso: 5.75%
-3 mushishi: 4.59%
-4 giant-killing: 2.07%
+1 free: 42.29%
+2 7seeds: 14.92%
+3 ballroom-e-youkoso: 6.05%
+4 mushishi: 4.24%
 
 Top 3 similar shows to usagi-drop:
-1 yuru-camp: 12.29%
-2 hibike-euphonium: 4.95%
+1 yuru-camp: 12.42%
+2 hibike-euphonium: 4.98%
 3 relife: 3.00%
-4 psycho-pass: 2.62%
+4 psycho-pass: 2.63%
 
 Top 3 similar shows to vanitas-no-karte:
-1 no-guns-life: 39.92%
-2 burn-the-witch: 37.75%
-3 chihayafuru: 32.17%
-4 paripi-koumei: 11.74%
+1 no-guns-life: 40.04%
+2 burn-the-witch: 37.87%
+3 chihayafuru: 32.31%
+4 paripi-koumei: 11.78%
 
 Top 3 similar shows to vinland-saga:
-1 suisei-no-majo: 8.08%
-2 princess-principal: 4.94%
-3 mushishi: 4.55%
-4 peachboy-riverside: 4.26%
+1 suisei-no-majo: 7.50%
+2 princess-principal: 4.95%
+3 mushishi: 4.49%
+4 peachboy-riverside: 4.23%
 
 Top 3 similar shows to violet-evergarden:
-1 eighty-six: 18.66%
+1 eighty-six: 18.74%
 2 princess-principal: 6.94%
-3 sirius-the-jaeger: 5.28%
+3 sirius-the-jaeger: 5.30%
 4 orbital-children: 4.59%
 
 Top 3 similar shows to vivy-flourite-eyes-song:
-1 orbital-children: 12.92%
-2 planetes: 4.14%
-3 fugou-keiji: 3.76%
-4 takt-op-destiny: 2.61%
+1 orbital-children: 12.97%
+2 planetes: 4.08%
+3 fugou-keiji: 3.78%
+4 takt-op-destiny: 2.51%
 
 Top 3 similar shows to wotaku-ni-koi-wa-muzukashii:
-1 boku-no-hero-academia: 3.69%
-2 fugou-keiji: 2.66%
-3 barakamon: 2.07%
-4 flying-witch: 1.47%
+1 boku-no-hero-academia: 3.40%
+2 fugou-keiji: 2.53%
+3 barakamon: 1.95%
+4 flying-witch: 1.48%
 
 Top 3 similar shows to yakusoku-no-neverland:
 1 shirobako: 5.99%
-2 peachboy-riverside: 4.40%
+2 peachboy-riverside: 4.28%
 3 sayounara-zetsubou-sensei: 3.66%
-4 dr-stone: 2.46%
+4 dr-stone: 2.45%
 
 Top 3 similar shows to yowamushi-pedal:
-1 kaze-ga-tsuyoku-fuiteiru: 7.25%
-2 psycho-pass: 3.43%
-3 sirius-the-jaeger: 2.56%
-4 kuroko-no-basket: 2.52%
+1 kaze-ga-tsuyoku-fuiteiru: 7.20%
+2 psycho-pass: 3.44%
+3 kuroko-no-basket: 2.50%
+4 sirius-the-jaeger: 2.47%
 
 Top 3 similar shows to yuru-camp:
-1 usagi-drop: 12.29%
-2 cider-no-you-ni-kotoba-ga-wakiagaru: 3.90%
-3 sayounara-zetsubou-sensei: 3.24%
-4 mushishi: 2.79%
+1 usagi-drop: 12.42%
+2 cider-no-you-ni-kotoba-ga-wakiagaru: 3.80%
+3 sayounara-zetsubou-sensei: 3.27%
+4 7seeds: 3.16%
 

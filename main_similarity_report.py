@@ -141,7 +141,7 @@ def main():
     with open(show_similarity_output, 'w') as file:
 
         for i,show in enumerate(show_list_order):
-            file.write(f'Top 3 similar shows to {show}:\n')
+            file.write(f'Top 4 similar shows to {show}:\n')
 
             similarity_values = cosine_sim_matrix[i]
 

@@ -17,174 +17,167 @@ import fugashi  # Mecab wrapper for tokenizer function
 from subtitleparsing import generate_core_vocab_list, import_core_vocab_list, shows_lemma_is_in
 
 
-def main():
-    #%% Generating list of core vocabulary from all shows in sub folder
-    subtitle_folder = 'subtitles'
+#%% Generating list of core vocabulary from all shows in sub folder
+subtitle_folder = 'subtitles'
 
-    tagger = fugashi.Tagger() # creating tagger object for later use
+tagger = fugashi.Tagger() # creating tagger object for later use
 
-    save_dir = 'script-output'
+save_dir = 'script-output'
 
-    generate_core_vocab_list(subtitle_folder, tagger, save_dir)
+generate_core_vocab_list(subtitle_folder, tagger, save_dir)
 
-    #%% Importing in already generated lists with lemmas that satisfy
-    # all, 90%, or 80% show occurence
-    shows_and_lemmas, shows_all, shows_90per, \
-        shows_80per = import_core_vocab_list(save_dir)
+#%% Importing in already generated lists with lemmas that satisfy
+# all, 90%, or 80% show occurence
+shows_and_lemmas, shows_all, shows_90per, \
+    shows_80per = import_core_vocab_list(save_dir)
 
-    # These are essentially my 'core vocabulary lists' depending if I want my
-    # occurence requirement to be all shows, 90% of shows, or 80% of shows
-    print('')
-    print(f'# of Lemmas in all shows: {len(shows_all)}')
-    print(f'# of Lemmas in 90% of shows: {len(shows_90per)}')
-    print(f'# of Lemmas in 80% of shows: {len(shows_80per)}\n')
+# These are essentially my 'core vocabulary lists' depending if I want my
+# occurence requirement to be all shows, 90% of shows, or 80% of shows
+print('')
+print(f'# of Lemmas in all shows: {len(shows_all)}')
+print(f'# of Lemmas in 90% of shows: {len(shows_90per)}')
+print(f'# of Lemmas in 80% of shows: {len(shows_80per)}\n')
 
-    #%% Calculate TF-IDF for each lemma and generate a square
-    # maxtrix with values between 0-1 to represent the similarity of the text
+#%% Calculate TF-IDF for each lemma and generate a square
+# maxtrix with values between 0-1 to represent the similarity of the text
 
-    lemmas_num_of_show_in = shows_lemma_is_in(shows_and_lemmas)  # dict of {lemmas : # of shows they appear in}
-    num_of_shows = len(shows_and_lemmas)  # number of shows in the subtitle folder
-    
-    TF_IDF_for_all_shows = {}  # empty dict for storing {lemma : TF-IDF value} for every lemma in each show
+lemmas_num_of_show_in = shows_lemma_is_in(shows_and_lemmas)  # dict of {lemmas : # of shows they appear in}
+num_of_shows = len(shows_and_lemmas)  # number of shows in the subtitle folder
 
-    i = 0
+TF_IDF_for_all_shows = {}  # empty dict for storing {lemma : TF-IDF value} for every lemma in each show
 
-    for show in shows_and_lemmas:  # for all lemmas
-        total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
-        tf_idf = {}
+i = 0
 
-        # calculate Term-freq * Inverse document frequency (TF-IDF)
-        for lemma in lemmas_num_of_show_in:
-            if lemma in shows_and_lemmas[show]:
-                tf = shows_and_lemmas[show][lemma] / total_words_in_show
-                idf = np.log(num_of_shows / lemmas_num_of_show_in[lemma])
-                
-                tf_idf[lemma] = tf * idf
+for show in shows_and_lemmas:  # for all lemmas
+    total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
+    tf_idf = {}
+
+    # calculate Term-freq * Inverse document frequency (TF-IDF)
+    for lemma in lemmas_num_of_show_in:
+        if lemma in shows_and_lemmas[show]:
+            tf = shows_and_lemmas[show][lemma] / total_words_in_show
+            idf = np.log(num_of_shows / lemmas_num_of_show_in[lemma])
             
-            else:
-                tf_idf[lemma] = 0
+            tf_idf[lemma] = tf * idf
+        
+        else:
+            tf_idf[lemma] = 0
 
-            # Note: TF-IDF = 0 if lemma is in all shows, or if it does not
-            # appear in a show
+        # Note: TF-IDF = 0 if lemma is in all shows, or if it does not
+        # appear in a show
 
-        TF_IDF_for_all_shows[show] = tf_idf
+    TF_IDF_for_all_shows[show] = tf_idf
 
-        # Saving TF-IDF scores for lemmas in shows to CSV files
-        data = [list(TF_IDF_for_all_shows[show].keys()),list(TF_IDF_for_all_shows[show].values())]
-        df = pd.DataFrame(data=data).T
-        df.columns = ['Lemma', 'TF-IDF']
-        df.to_csv(f'{save_dir}/TF-IDF Scores/{show}-TF-IDF.csv', encoding='utf_8_sig')
+    # Saving TF-IDF scores for lemmas in shows to CSV files
+    data = [list(TF_IDF_for_all_shows[show].keys()),list(TF_IDF_for_all_shows[show].values())]
+    df = pd.DataFrame(data=data).T
+    df.columns = ['Lemma', 'TF-IDF']
+    df.to_csv(f'{save_dir}/TF-IDF Scores/{show}-TF-IDF.csv', encoding='utf_8_sig')
 
-        # Printing out a status line saying how many shows have been processed
-        i += 1
-        print(f'TF-IDF values calculated for {i}/{num_of_shows} shows')
+    # Printing out a status line saying how many shows have been processed
+    i += 1
+    print(f'TF-IDF values calculated for {i}/{num_of_shows} shows')
 
-    
-    #%% Calculate the cosine similarity between the shows
-    # Also generating csv files for lists of words that shows have in common
-    cosine_sim_matrix = np.zeros((num_of_shows, num_of_shows))  # empty matrix for storing similarity scores
-    show_list_order = list([x for x in TF_IDF_for_all_shows])  # list to know the order of the rows/columns in TF-IDF matrix
 
-    print('-- Beginning Cosine Similarity Calculations --\n')
+#%% Calculate the cosine similarity between the shows
+# Also generating csv files for lists of words that shows have in common
+cosine_sim_matrix = np.zeros((num_of_shows, num_of_shows))  # empty matrix for storing similarity scores
+show_list_order = list([x for x in TF_IDF_for_all_shows])  # list to know the order of the rows/columns in TF-IDF matrix
 
-    for i,show1 in enumerate(TF_IDF_for_all_shows):
-        df = pd.DataFrame()
-        for j,show2 in enumerate(TF_IDF_for_all_shows):
-            print(f'Calculating similarities between {show1} and {show2}')
-            A_vec = list(TF_IDF_for_all_shows[show1].values())
-            B_vec = list(TF_IDF_for_all_shows[show2].values())
-            A_dot_B = np.dot(A_vec, B_vec)
+print('-- Beginning Cosine Similarity Calculations --\n')
 
-            A_norm = np.linalg.norm(A_vec)
-            B_norm = np.linalg.norm(B_vec)
-            norm_product = A_norm * B_norm
+for i,show1 in enumerate(TF_IDF_for_all_shows):
+    df = pd.DataFrame()
+    for j,show2 in enumerate(TF_IDF_for_all_shows):
+        print(f'Calculating similarities between {show1} and {show2}')
+        A_vec = list(TF_IDF_for_all_shows[show1].values())
+        B_vec = list(TF_IDF_for_all_shows[show2].values())
+        A_dot_B = np.dot(A_vec, B_vec)
 
-            cos_sim = A_dot_B / norm_product
+        A_norm = np.linalg.norm(A_vec)
+        B_norm = np.linalg.norm(B_vec)
+        norm_product = A_norm * B_norm
 
-            cosine_sim_matrix[i,j] = cos_sim
+        cos_sim = A_dot_B / norm_product
 
-            # Determining shared lemmas and writing to file
-            common_list = ['null'] * len(lemmas_num_of_show_in)
-            k = 0
-            if show1 == show2:  # skip to the next if comparing the same show
-                continue
+        cosine_sim_matrix[i,j] = cos_sim
 
-            else:
-                for lemma in TF_IDF_for_all_shows[show2]:
-                    # checking if lemma is present in both shows (based on TF-IDF)
-                    if TF_IDF_for_all_shows[show2][lemma] != 0 and \
-                        TF_IDF_for_all_shows[show1][lemma] != 0:
-                        # Limiting to nouns, verbs, adjectives, and adverbs
-                        if tagger(lemma)[0].feature.pos1 == '名詞' or \
-                            tagger(lemma)[0].feature.pos1 == '動詞' or \
-                                tagger(lemma)[0].feature.pos1 == '形容詞' or \
-                                    tagger(lemma)[0].feature.pos1 == '副詞':
-                                        common_list[k] = lemma
-                                        k += 1
-                                        
+        # Determining shared lemmas and writing to file
+        common_list = ['null'] * len(lemmas_num_of_show_in)
+        k = 0
+        if show1 == show2:  # skip to the next if comparing the same show
+            continue
 
-            df[f'{show2}'] = common_list
+        else:
+            for lemma in TF_IDF_for_all_shows[show2]:
+                # checking if lemma is present in both shows (based on TF-IDF)
+                if TF_IDF_for_all_shows[show2][lemma] != 0 and \
+                    TF_IDF_for_all_shows[show1][lemma] != 0:
+                    # Limiting to nouns, verbs, adjectives, and adverbs
+                    if tagger(lemma)[0].feature.pos1 == '名詞' or \
+                        tagger(lemma)[0].feature.pos1 == '動詞' or \
+                            tagger(lemma)[0].feature.pos1 == '形容詞' or \
+                                tagger(lemma)[0].feature.pos1 == '副詞':
+                                    common_list[k] = lemma
+                                    k += 1
+                                    
 
-        df.to_csv(f'{save_dir}/Common words/Common words with {show1}.csv', encoding='utf_8_sig')
-                
+        df[f'{show2}'] = common_list
 
-    print('-- Cosine Similarity matrix calculation complete --\n')
+    df.to_csv(f'{save_dir}/Common words/Common words with {show1}.csv', encoding='utf_8_sig')
+            
 
-    # Saving cosine similarity matrix as csv
-    df = pd.DataFrame(data=cosine_sim_matrix, columns=show_list_order, index=show_list_order)
-    df.to_csv(f'{save_dir}/Cosine Similarity matrix.csv')
+print('-- Cosine Similarity matrix calculation complete --\n')
 
-    # For each show, print the next 3 shows that are closest in similarity
-    show_similarity_output = f'{save_dir}/Show Similarity Analysis Results.txt'
+# Saving cosine similarity matrix as csv
+df = pd.DataFrame(data=cosine_sim_matrix, columns=show_list_order, index=show_list_order)
+df.to_csv(f'{save_dir}/Cosine Similarity matrix.csv')
 
-    print('-- Beginning write of similarity analysis to file --')
-    with open(show_similarity_output, 'w') as file:
+# For each show, print the next 3 shows that are closest in similarity
+show_similarity_output = f'{save_dir}/Show Similarity Analysis Results.txt'
 
-        for i,show in enumerate(show_list_order):
-            file.write(f'Top 4 similar shows to {show}:\n')
+print('-- Beginning write of similarity analysis to file --')
+with open(show_similarity_output, 'w') as file:
 
-            similarity_values = cosine_sim_matrix[i]
+    for i,show in enumerate(show_list_order):
+        file.write(f'Top 4 similar shows to {show}:\n')
 
-            # sorts values from greatest -> least
-            sorted_similarity_values = sorted(similarity_values, reverse=True)
-
-            # ignores '1', which is similarity with itself
-            top_4_similar_val = sorted_similarity_values[1:5]  
-
-            for j,x in enumerate(top_4_similar_val):
-                # pulling index where x is in the similarity array
-                index = np.where(similarity_values == x)[0][0]  # [0][0] is for getting the integer
-                file.write(f'{j+1} {show_list_order[index]}: {x*100:.2f}%\n')
-
-            file.write('\n')
-
-    print('-- Similarity analysis file writing complete --')
-
-    #%% Visualizing Similarity results as a graph
-    G = nx.Graph()  # general network object
-
-    # Creation of nodes for all shows
-    for show in show_list_order:
-        G.add_node(f'{show}')
-
-    
-    # Creating edges with weights equal to the similarity score
-    for i,show1 in enumerate(show_list_order):
         similarity_values = cosine_sim_matrix[i]
 
-        for index,show2 in enumerate(show_list_order):
-            if show1 == show2:
-                continue
+        # sorts values from greatest -> least
+        sorted_similarity_values = sorted(similarity_values, reverse=True)
 
-            G.add_edge(show1, show2)
-            G[show1][show2]['weight'] = similarity_values[index]*100
+        # ignores '1', which is similarity with itself
+        top_4_similar_val = sorted_similarity_values[1:5]  
+
+        for j,x in enumerate(top_4_similar_val):
+            # pulling index where x is in the similarity array
+            index = np.where(similarity_values == x)[0][0]  # [0][0] is for getting the integer
+            file.write(f'{j+1} {show_list_order[index]}: {x*100:.2f}%\n')
+
+        file.write('\n')
+
+print('-- Similarity analysis file writing complete --')
+
+#%% Visualizing Similarity results as a graph
+G = nx.Graph()  # general network object
+
+# Creation of nodes for all shows
+for show in show_list_order:
+    G.add_node(f'{show}')
 
 
-    # generate gexf file for viewing in Gephi program
-    nx.write_gexf(G, f'{save_dir}/Show Similarity Graph.gexf')  
+# Creating edges with weights equal to the similarity score
+for i,show1 in enumerate(show_list_order):
+    similarity_values = cosine_sim_matrix[i]
 
-    return
+    for index,show2 in enumerate(show_list_order):
+        if show1 == show2:
+            continue
+
+        G.add_edge(show1, show2)
+        G[show1][show2]['weight'] = similarity_values[index]*100
 
 
-if __name__ == '__main__':
-    main()
+# generate gexf file for viewing in Gephi program
+nx.write_gexf(G, f'{save_dir}/Show Similarity Graph.gexf')  

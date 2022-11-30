@@ -49,7 +49,7 @@ TF_IDF_for_all_shows = {}  # empty dict for storing {lemma : TF-IDF value} for e
 i = 0
 
 for show in shows_and_lemmas:  # for all lemmas
-    total_words_in_show = sum(list(shows_and_lemmas[show].values()))     
+    total_words_in_show = sum(list(shows_and_lemmas[show].values()))
     tf_idf = {}
 
     # calculate Term-freq * Inverse document frequency (TF-IDF)

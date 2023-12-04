@@ -27,6 +27,7 @@ References:
 
 # Repo Contents
 data - subtitle files for shows analyzed, separated as one folder for each show.
+
 jupyter_writeup - Jupyter Notebook file and associated scripts for a more "article" style writeup.
 
 # Setting up environment
@@ -34,27 +35,19 @@ To run the scripts and code in this repo, the python environment was set up as f
 
 Note: if 'pip install package' can't find the path to pip, try 'python -m pip install package'.
 
-## Installing Mecab
-Japanese language tokenizer and morphological analysis.
-```shell
-pip install mecab
-```
-https://pypi.org/project/mecab/
-
 ## Installing fugashi 
 For obtaining the lemma's of the words.
-Cython wrapper for the Mecab tool.
-(https://pypi.org/project/fugashi/)
+Cython wrapper for the Mecab tool (https://pypi.org/project/fugashi/).
 
 ```shell
 pip install fugashi
 ```
 
 ## Installing Unidic 
-Dictionary tool.
+Dictionary tool (https://pypi.org/project/unidic/).
 
 ```shell
-pip install unidict
+pip install unidic
 ```
 followed by
 ```shell
@@ -62,4 +55,16 @@ python -m unidic download
 ```
 to download the dictionary files.
 Takes up 1GB of disk space (according to pypi readme).
-https://pypi.org/project/unidic/
+
+## Installing Mecab
+Japanese language tokenizer and morphological analysis (https://github.com/ikegami-yukino/mecab/releases).
+
+For python 64-bit on Windows, the MeCab 64-bit binary is required (according to the pypi site).
+https://github.com/ikegami-yukino/mecab/releases
+
+Install using the UTF-8 character set option.
+
+Following installing of the above binary if needed, run
+```shell
+pip install mecab
+```

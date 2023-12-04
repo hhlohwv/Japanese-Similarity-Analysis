@@ -1,13 +1,9 @@
-# setting git to ignore changes to the virtual environment folders
-venv/
-venv-laptop/
+# Virtual Environment
+.venv/
+
+# Jupyter related files
+.ipynb_checkpoints
 
 # also for the folder for vscode
 .vscode/
-
-# Also setting git to ignore the pycache folder, whatever it is
 __pycache__/
-
-#todo file, so I'm not committing every single edit
-todo.txt
-todo.md

@@ -1,70 +1,65 @@
-# Scope and aim
-Aim is to analyze subtitle files from anime series and compile a database/list of the frequently occuring words outside of the 'core language', i.e. the domain language of each show.
-- core language being those words that are common to all media (i.e. 私, はい, other ubiquitous words
-- domain language being those words common to the type of media (setting, theme, genre), but maybe not common outside of that area.
+# Background
+Immersion learning is a method of foreign language learning (also called acquisition) which emphasizes the learning of a foreign language using native content in the language as the primary study material.
+For Japanese, one source of content for use in immersion learning is anime.
+Different methods and approaches for using anime to learn the Japanese language have been presented on different internet sites and platforms, one example being AJATT (All Japanese All The Time) [1] and its various adaptations and modifications.
 
-Motivation is from a number of sources, such as MattVsJapan (Focus on a single domain to increase comprehension of language in that area) and Steve Kaufmann (Words are king, learn a lot of words).
+One source of information relating to tips, strategies, and tools for applying an AJATT style approach to Japanese learning using Anime is a YouTube channel called Matt vs Japan [2].
+One idea that has been presented by MattvsJapan, as well as on the Refold language learning guide is the idea of language "domains", or genres of content which have a specific subset of language that is commonly used (e.g. fantasy vs. crime drama vs. slice-of-life) [3].
+By focusing on a single domain, words unique to a domain can be encountered more frequency, thus increasing the chance of acquiring them for long term retention.
+The aquisition of words has been deemed as highly important for learning a language, such as by Steve Kaufmann (one of the founders of LingQ) [4] [5].
+Therefore, focusing on a single domain when immersing is an attractive strategy for quickly aquiring foreign language vocabulary.
 
+One idea to determine the domain of a show/piece of content is by the genre of the media (e.g. slice-of-life).
+While this seems to be a sensible categorization of media into language domains, the question remains (at least to me) whether shows within a single genre quantitatively have a higher language similarity than shows across different tagged genres.
 
-# Python Virtual Environment
-Using the python 'venv' module for managing the virtual environment.
+The aim of this repo is to provide an analysis of the language content from different anime shows to quantify the degree of similarity in the language used.
+The objectives are as follows:
+- Develope criteria for comparing the similarity of the language present between any two shows.
+- Identify and differentiate between "core language" and "domain language".
+- Compare the degree of similarity of the language of shows in a single genre compared to shows across genres.
 
-Create using 'python -m venv venv'
+References:
+[1] https://tatsumoto-ren.github.io/blog/whats-ajatt.html
+[2] https://www.youtube.com/@mattvsjapan
+[3] https://refold.la/simplified/stage-2/b/immersion-guide
+[4] https://www.youtube.com/@Thelinguist
+[5] https://www.lingq.com/en/
 
-## Notes regarding usage, mostly for myself
-- Start the virtual environment in the terminal (in the folder) using venv\scripts\activate
-- Open up the idle in the virtual environment using python -m idlelib.idle
-- Deactivate the virtual environment using deactivate
-- While in the virtual environment, install packages as normal using pip.
+# Repo Contents
+data - subtitle files for shows analyzed, separated as one folder for each show.
+jupyter_writeup - Jupyter Notebook file and associated scripts for a more "article" style writeup.
 
+# Setting up environment
+To run the scripts and code in this repo, the python environment was set up as follows:
 
-# Environment setup and package installation
+Note: if 'pip install package' can't find the path to pip, try 'python -m pip install package'.
 
-Note: if 'pip install package' can't find the path to pip, use 'python -m pip install package' instead.
+## Installing Mecab
+Japanese language tokenizer and morphological analysis.
+```shell
+pip install mecab
+```
+https://pypi.org/project/mecab/
 
-## Using 'fugashi' for the Japanese language analysis module
+## Installing fugashi 
 For obtaining the lemma's of the words.
-Install using 'pip install fugashi'
+Cython wrapper for the Mecab tool.
+(https://pypi.org/project/fugashi/)
 
-## Using Unidic as the dictionary
-Install using 'pip install unidic' followed by 'python -m unidic download'
+```shell
+pip install fugashi
+```
 
-## Using Mecab as binding for Mecab (? still not exactly sure what that functions as)
-Install using 'pip install mecab'
+## Installing Unidic 
+Dictionary tool.
 
-## Plotting and additional calculations via Matplotlib
-Install using 'pip install matplotlib'.
-This also handles the installation of the numpy package.
-
-For easy copying of figures with ctrl+c, can use addcopyfighandler
-Install using 'pip install addcopyfighandler'
-
-For saving installed packages to requirements.txt, run 'pip freeze > requirements.txt'
-For installing packages from requirements file into virtual environment, run 'pip install -r requirements.txt'
-
-
-# Script usage and analysis workflow
-
-
-# Proposed study workflow (to refine)
-Note: This approach may be best after one has some familiarity with the core vocabular/structure of Japanese.
-For me, I've been using an immersion focused study approach for the last 2 years, and am at the point where I can get a sense of the meaning of many things in a relatively simple context, I am able to read/work through some manga, and regularly listen to japanese conversation through podcasts such as YUYUの日本語PODCAST and streams on YouTube, primarily Japanese VTubers, focusing on Zatsudan content but simply watching what I find entertaining.
-
-A study workflow which utilizes these scripts may be in the following form:
-
-Requirements/software needed:
-Python
-Subtitle files for a show
-Slideshow/presentation software (e.g. LibreOffice Impress (free), Powerpoint)
-
-Watch a show that you enjoy/are familiar with the story and possibly have watched once in English.
-
-Extract the domain language using the scripts, with the subtitles for the entire show/season as the input.
-
-Take the top # of domain language words (however many # is) and make sentence cards in the presentation software, perhaps 2-3 sentences per domain language word.
-Include a screen shot of the scene and an audio recording that can play when the slide is shown.
-- for choosing sentences, probably go with 1T mentality, choosing sentences that have this word as one of the only unknown elements, and also including sentences before/after if they help with understanding the context that the sentece occurs is.
-- Goal is for the sentence slide to be understandable by itself.
-
-Each day when immersing, quickly review the slides by clicking through them while listening and reading to the sentence.
-When finished watching the series, review the slides again and store away. These slides can then be quickly reviewed then at any point.
+```shell
+pip install unidict
+```
+followed by
+```shell
+python -m unidic download
+```
+to download the dictionary files.
+Takes up 1GB of disk space (according to pypi readme).
+https://pypi.org/project/unidic/

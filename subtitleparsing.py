@@ -7,8 +7,8 @@ import re  # for regular expression searching
 import os  #for scanning files in the given directory
 import json  # for writing and reading dictionary to file
 
-import matplotlib.pyplot as plt
-import matplotlib as mpl
+# import matplotlib.pyplot as plt
+# import matplotlib as mpl
 
 
 def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
@@ -357,58 +357,58 @@ def pos_freq_eng_conv(pos_dict, tagger):
     return bins_eng, freq
 
 
-def language_hist_occur(title: str, input_dict: dict, scale:str):
-    """
-    For plotting histograms of occurence freq for an inputed dictionary of
-    lemma:freq
-    """
+# def language_hist_occur(title: str, input_dict: dict, scale:str):
+#     """
+#     For plotting histograms of occurence freq for an inputed dictionary of
+#     lemma:freq
+#     """
 
-    lemma_counts = list(input_dict.values())
+#     lemma_counts = list(input_dict.values())
 
-    fig = plt.figure(figsize=(8,6))
-    plt.hist(lemma_counts, bins=100)
-    plt.title(f'Lemma Freq Occurence: {title}')
-    plt.xlabel('Occurence Frequency')
-    plt.ylabel('# of Lemmas with given frequency')
-    plt.yscale(scale)
+#     fig = plt.figure(figsize=(8,6))
+#     plt.hist(lemma_counts, bins=100)
+#     plt.title(f'Lemma Freq Occurence: {title}')
+#     plt.xlabel('Occurence Frequency')
+#     plt.ylabel('# of Lemmas with given frequency')
+#     plt.yscale(scale)
 
-    # for copy-paste function
-    mpl.rcParams['savefig.format'] = 'svg' # sets copied file to .svg
-    mpl.rcParams['savefig.bbox'] = 'tight' # reduces white space around fig
+#     # for copy-paste function
+#     mpl.rcParams['savefig.format'] = 'svg' # sets copied file to .svg
+#     mpl.rcParams['savefig.bbox'] = 'tight' # reduces white space around fig
 
-    fig.show()
+#     fig.show()
 
-    return
+#     return
 
 
-def language_hist_pos(title: str, input: dict, tagger, scale:str):
-    """
-    For plotting histograms of occurence for parts of speech of a word list
-    """
-    input_list = list(input.keys())
+# def language_hist_pos(title: str, input: dict, tagger, scale:str):
+#     """
+#     For plotting histograms of occurence for parts of speech of a word list
+#     """
+#     input_list = list(input.keys())
 
-    pos_dict = pos_counter(input_list, tagger)
+#     pos_dict = pos_counter(input_list, tagger)
 
-    pos_bins_eng, pos_freq = pos_freq_eng_conv(pos_dict, tagger)
+#     pos_bins_eng, pos_freq = pos_freq_eng_conv(pos_dict, tagger)
 
-    fig = plt.figure(figsize=(8,7))
-    plt.bar(pos_bins_eng, pos_freq)
-    plt.title(f'POS Histogram for Lemmas: {title}')
-    plt.xlabel('Part of Speech')
-    plt.ylabel('Frequency')
-    plt.yscale(scale)
+#     fig = plt.figure(figsize=(8,7))
+#     plt.bar(pos_bins_eng, pos_freq)
+#     plt.title(f'POS Histogram for Lemmas: {title}')
+#     plt.xlabel('Part of Speech')
+#     plt.ylabel('Frequency')
+#     plt.yscale(scale)
 
-    # Adjusting the rotation of the x labels and the whitespace around them
-    ax = plt.gca()  # access the figure axis
-    ax.set_xticklabels(labels=pos_bins_eng, rotation=80)
-    fig.subplots_adjust(bottom=0.3)
+#     # Adjusting the rotation of the x labels and the whitespace around them
+#     ax = plt.gca()  # access the figure axis
+#     ax.set_xticklabels(labels=pos_bins_eng, rotation=80)
+#     fig.subplots_adjust(bottom=0.3)
 
-    mpl.rcParams['savefig.format'] = 'svg' # sets copied file to .svg
-    mpl.rcParams['savefig.bbox'] = 'tight' # reduces white space around fig
+#     mpl.rcParams['savefig.format'] = 'svg' # sets copied file to .svg
+#     mpl.rcParams['savefig.bbox'] = 'tight' # reduces white space around fig
 
-    fig.show()
+#     fig.show()
 
-    return
+#     return
 
 
 def shows_lemma_is_in(shows_and_lemmas):

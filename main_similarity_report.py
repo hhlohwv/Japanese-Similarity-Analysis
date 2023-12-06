@@ -7,9 +7,9 @@ Using networkx package for visualizing the similarity connections between
 shows
 """
 
-import numpy as np
-import networkx as nx  # for visualizing similarity results
-import pandas as pd  # data file output as csv
+# import numpy as np
+# import networkx as nx  # for visualizing similarity results
+# import pandas as pd  # data file output as csv
 
 import fugashi  # Mecab wrapper for tokenizer function
 

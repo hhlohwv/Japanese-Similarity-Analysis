@@ -10,38 +10,22 @@ import json  # for writing and reading dictionary to file
 # import matplotlib.pyplot as plt
 # import matplotlib as mpl
 
-
-def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
+def create_lemma_database(subtitle_folder, tagger):
     """
-    Generate the list of core vocabulary by parsing through all the shows
-    present in the inputed subtitle folder and write to file
+    Create a dictionary containing the name of the show as the key and the set of lemmas
+    present as the value.
 
     Parameters:
     ---
     subtitle_folder: str - name of folder containing shows and their subtitles
     for parsing/analyzing
 
-    tagger: fugashi tagger object - object generated via fugashi.Tagger()
-
-    save_dir: str - path to the folder where the generated core vocab lemma
-    files are to be saved
+    tagger: fugashi tagger object - object generated via fugashi.Tagger() or from fugashi import Tagger
 
 
     Returns:
     ---
-    None, but writes the following to file:
-
-    shows_and_lemmas: dict - dictionary with show names as keys, with values as
-    another {key:value} set of {lemmas in the show:frequency of occurence}
-    
-    lemmas_all_shows: list - list of lemmas which appear at least once in every
-    show in the subtitle folder
-    
-    lemmas_90per_shows: list - list of lemmas which appear in ~90% of the shows
-    (rounded) in the subtitle folder
-
-    lemmas_80per_shows: list - list of lemmas which appear in ~80% of the shows
-    (rounded) in the subtitle folder
+    shows_and_lemmas: dict - dictionary with show names as keys, with values as the set of lemmas present
     """
 
     shows = os.listdir(subtitle_folder) # get show folder names in subtitles/
@@ -60,135 +44,220 @@ def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
 
         for file in show_subs_files:  # allows reading any number of sub files
             with open(f'{path}/{file}', 'r', encoding='UTF-8') as f:  
-            # extracting the lines from the subititle file
+                # extracting the lines from the subititle file
                 file_text = f.readlines()
 
             # unpack and add to total list of cleaned lines
             cleaned_lines = cleaned_lines + [*clean_lines(file_text)]
 
-        # getting dict of lemmas present and how many times they occur
-        lemma_counts = lemmas_counter(cleaned_lines, tagger)
+        # Convert the list of lines to list of lemmas
+        lemma_list = []
+        for sentence in cleaned_lines:
+            lemmas = lemma_extract(sentence, tagger)
+            for lemma in lemmas:
+                lemma_list.append(lemma)
 
-        # linking the lemmas and counts to the show name in a dict format
-        shows_and_lemmas[series] = lemma_counts
+        # reduce down to unique set
+        lemma_set = set(lemma_list)
 
-    lemma_show_occurence = shows_lemma_is_in(shows_and_lemmas)
-
-
-    # extracting out the lemmas that occur in all, 90%, and 80% of the shows 
-    # in the show list (i.e. value=# of shows and then percentages of that)
-    num_shows = len(shows_and_lemmas)
-
-    # Note: item() returns a list of the key,value pairs
-    # using list comprehension to sort out lemmas with the value for all shows
-    # courtesy of https://datagy.io/python-check-if-key-value-dictionary/
-    lemmas_all_shows = [lemma for lemma, occurs in \
-                        lemma_show_occurence.items() if occurs == num_shows]
-    
-    shows_90 = round(num_shows*0.9)  # rounds to the nearest integer
-    lemmas_90per_shows = [lemma for lemma, occurs in 
-                        lemma_show_occurence.items() if occurs >= shows_90]
-    
-    shows_80 = round(num_shows*0.8)
-    lemmas_80per_shows = [lemma for lemma, occurs in \
-                        lemma_show_occurence.items() if occurs >= shows_80]
+        # Add lemma set and show name to output dict
+        shows_and_lemmas[series] = lemma_set
 
 
-    # Exporting/saving files to the provided save directory
-    print('')
-    print(f'Generating core vocab lists in {save_dir}/\n')
-
-    # Check if save directory exists, create if doesn't
-    if not os.path.exists(save_dir):
-        print('Save folder not found, creating...\n')
-        os.makedirs(save_dir)
-
-    print('')
-    print('Beginning write of shows-and-lemmas dictionary...')
-    # Writing shows_and_lemmas dictionary to file
-    with open(f'{save_dir}/shows-and-lemmas-dict.txt', 'w', encoding='UTF-8') as \
-        save_file:
-        save_file.write(json.dumps(shows_and_lemmas))
-
-    print('File write complete\n')
-
-    print('Beginning write of lemmas-all-shows list...')
-    # writing lemmas lists to file
-    with open(f'{save_dir}/lemmas-in-all-shows.txt', 'w', encoding='UTF-8') as \
-        save_file:
-        for i in lemmas_all_shows:
-            save_file.write(i + '\n')
-    
-    print('File write complete\n')
-
-    print('Beginning write of lemmas-90per-shows list...')
-    with open(f'{save_dir}/lemmas-in-90per-shows.txt', 'w', encoding='UTF-8') as \
-        save_file:
-        for i in lemmas_90per_shows:
-            save_file.write(i + '\n')
-    
-    print('File write complete\n')
-
-    print('')
-    print('Beginning write of lemmas-80per-shows list...')
-    with open(f'{save_dir}/lemmas-in-80per-shows.txt', 'w', encoding='UTF-8') as \
-        save_file:
-        for i in lemmas_80per_shows:
-            save_file.write(i + '\n')
-
-    print('File write complete\n')
-
-    return
+    return shows_and_lemmas
 
 
-def import_core_vocab_list(core_vocab_dir):
+def lemma_extract(text, tagger):
     """
-    For importing dictionary and list files previously generated by the
-    generate_core_vocab_list() function
-
-    Parameters:
-    ---
-    core_vocab_list_dir: str - path to the folder containing the lemma and show
-    dictionary and list outputs from 
-
-   Returns:
-    ---
-    shows_and_lemmas: dict, dictionary with show names as keys, with values as
-    another {key:value} set of {lemmas in the show:frequency of occurence}
-    
-    lemmas_all_shows: list, list of lemmas which appear at least once in every
-    show in the subtitle folder
-    
-    lemmas_90per_shows: list, list of lemmas which appear in ~90% of the shows
-    (rounded) in the subtitle folder
-
-    lemmas_80per_shows: list, list of lemmas which appear in ~80% of the shows
-    (rounded) in the subtitle folder
-
+    Short function for returning a list of words and a list of the lemmas
     """
-    # Reading in files
-    with open(f'{core_vocab_dir}/shows-and-lemmas-dict.txt', 'r', encoding='UTF-8') \
-        as f:
-        shows_and_lemmas = f.read()
+    words = tagger(text)
 
-    shows_and_lemmas = json.loads(shows_and_lemmas) # convert back to dict
+    lemma_list = []
+    for word in words:
+        lemma_list.append(word.feature.lemma)
 
-
-    with open(f'{core_vocab_dir}/lemmas-in-all-shows.txt', 'r', encoding='UTF-8') \
-        as f:
-        lemmas_all_shows = f.read().splitlines() # gets rid of newlines
-
-    with open(f'{core_vocab_dir}/lemmas-in-90per-shows.txt', 'r', encoding='UTF-8') \
-        as f:
-        lemmas_90per_shows = f.read().splitlines()
-
-    with open(f'{core_vocab_dir}/lemmas-in-80per-shows.txt', 'r', encoding='UTF-8') \
-        as f:
-        lemmas_80per_shows = f.read().splitlines()
+    return lemma_list
 
 
-    return shows_and_lemmas, lemmas_all_shows, lemmas_90per_shows, \
-        lemmas_80per_shows
+# def generate_core_vocab_list(subtitle_folder, tagger, save_dir):
+#     """
+#     Generate the list of core vocabulary by parsing through all the shows
+#     present in the inputed subtitle folder and write to file
+
+#     Parameters:
+#     ---
+#     subtitle_folder: str - name of folder containing shows and their subtitles
+#     for parsing/analyzing
+
+#     tagger: fugashi tagger object - object generated via fugashi.Tagger()
+
+#     save_dir: str - path to the folder where the generated core vocab lemma
+#     files are to be saved
+
+
+#     Returns:
+#     ---
+#     None, but writes the following to file:
+
+#     shows_and_lemmas: dict - dictionary with show names as keys, with values as
+#     another {key:value} set of {lemmas in the show:frequency of occurence}
+    
+#     lemmas_all_shows: list - list of lemmas which appear at least once in every
+#     show in the subtitle folder
+    
+#     lemmas_90per_shows: list - list of lemmas which appear in ~90% of the shows
+#     (rounded) in the subtitle folder
+
+#     lemmas_80per_shows: list - list of lemmas which appear in ~80% of the shows
+#     (rounded) in the subtitle folder
+#     """
+
+#     shows = os.listdir(subtitle_folder) # get show folder names in subtitles/
+
+#     shows_and_lemmas = {}  #initializing empty dictionaries for storage
+    
+#     print('-- Beginning parse of shows in subtitle folder --\n')
+
+#     for series in shows:  # begin parsing all series in subtitle folder
+#         print(f'Show currently parsing: {series}')
+
+#         path = f'{subtitle_folder}/{series}'
+#         show_subs_files = os.listdir(path) # get names for each sub file
+
+#         cleaned_lines = []  #initialize list for storage of lines
+
+#         for file in show_subs_files:  # allows reading any number of sub files
+#             with open(f'{path}/{file}', 'r', encoding='UTF-8') as f:  
+#             # extracting the lines from the subititle file
+#                 file_text = f.readlines()
+
+#             # unpack and add to total list of cleaned lines
+#             cleaned_lines = cleaned_lines + [*clean_lines(file_text)]
+
+#         # getting dict of lemmas present and how many times they occur
+#         lemma_counts = lemmas_counter(cleaned_lines, tagger)
+
+#         # linking the lemmas and counts to the show name in a dict format
+#         shows_and_lemmas[series] = lemma_counts
+
+#     lemma_show_occurence = shows_lemma_is_in(shows_and_lemmas)
+
+
+#     # extracting out the lemmas that occur in all, 90%, and 80% of the shows 
+#     # in the show list (i.e. value=# of shows and then percentages of that)
+#     num_shows = len(shows_and_lemmas)
+
+#     # Note: item() returns a list of the key,value pairs
+#     # using list comprehension to sort out lemmas with the value for all shows
+#     # courtesy of https://datagy.io/python-check-if-key-value-dictionary/
+#     lemmas_all_shows = [lemma for lemma, occurs in \
+#                         lemma_show_occurence.items() if occurs == num_shows]
+    
+#     shows_90 = round(num_shows*0.9)  # rounds to the nearest integer
+#     lemmas_90per_shows = [lemma for lemma, occurs in 
+#                         lemma_show_occurence.items() if occurs >= shows_90]
+    
+#     shows_80 = round(num_shows*0.8)
+#     lemmas_80per_shows = [lemma for lemma, occurs in \
+#                         lemma_show_occurence.items() if occurs >= shows_80]
+
+
+#     # Exporting/saving files to the provided save directory
+#     print('')
+#     print(f'Generating core vocab lists in {save_dir}/\n')
+
+#     # Check if save directory exists, create if doesn't
+#     if not os.path.exists(save_dir):
+#         print('Save folder not found, creating...\n')
+#         os.makedirs(save_dir)
+
+#     print('')
+#     print('Beginning write of shows-and-lemmas dictionary...')
+#     # Writing shows_and_lemmas dictionary to file
+#     with open(f'{save_dir}/shows-and-lemmas-dict.txt', 'w', encoding='UTF-8') as \
+#         save_file:
+#         save_file.write(json.dumps(shows_and_lemmas))
+
+#     print('File write complete\n')
+
+#     print('Beginning write of lemmas-all-shows list...')
+#     # writing lemmas lists to file
+#     with open(f'{save_dir}/lemmas-in-all-shows.txt', 'w', encoding='UTF-8') as \
+#         save_file:
+#         for i in lemmas_all_shows:
+#             save_file.write(i + '\n')
+    
+#     print('File write complete\n')
+
+#     print('Beginning write of lemmas-90per-shows list...')
+#     with open(f'{save_dir}/lemmas-in-90per-shows.txt', 'w', encoding='UTF-8') as \
+#         save_file:
+#         for i in lemmas_90per_shows:
+#             save_file.write(i + '\n')
+    
+#     print('File write complete\n')
+
+#     print('')
+#     print('Beginning write of lemmas-80per-shows list...')
+#     with open(f'{save_dir}/lemmas-in-80per-shows.txt', 'w', encoding='UTF-8') as \
+#         save_file:
+#         for i in lemmas_80per_shows:
+#             save_file.write(i + '\n')
+
+#     print('File write complete\n')
+
+#     return
+
+
+# def import_core_vocab_list(core_vocab_dir):
+#     """
+#     For importing dictionary and list files previously generated by the
+#     generate_core_vocab_list() function
+
+#     Parameters:
+#     ---
+#     core_vocab_list_dir: str - path to the folder containing the lemma and show
+#     dictionary and list outputs from 
+
+#    Returns:
+#     ---
+#     shows_and_lemmas: dict, dictionary with show names as keys, with values as
+#     another {key:value} set of {lemmas in the show:frequency of occurence}
+    
+#     lemmas_all_shows: list, list of lemmas which appear at least once in every
+#     show in the subtitle folder
+    
+#     lemmas_90per_shows: list, list of lemmas which appear in ~90% of the shows
+#     (rounded) in the subtitle folder
+
+#     lemmas_80per_shows: list, list of lemmas which appear in ~80% of the shows
+#     (rounded) in the subtitle folder
+
+#     """
+#     # Reading in files
+#     with open(f'{core_vocab_dir}/shows-and-lemmas-dict.txt', 'r', encoding='UTF-8') \
+#         as f:
+#         shows_and_lemmas = f.read()
+
+#     shows_and_lemmas = json.loads(shows_and_lemmas) # convert back to dict
+
+
+#     with open(f'{core_vocab_dir}/lemmas-in-all-shows.txt', 'r', encoding='UTF-8') \
+#         as f:
+#         lemmas_all_shows = f.read().splitlines() # gets rid of newlines
+
+#     with open(f'{core_vocab_dir}/lemmas-in-90per-shows.txt', 'r', encoding='UTF-8') \
+#         as f:
+#         lemmas_90per_shows = f.read().splitlines()
+
+#     with open(f'{core_vocab_dir}/lemmas-in-80per-shows.txt', 'r', encoding='UTF-8') \
+#         as f:
+#         lemmas_80per_shows = f.read().splitlines()
+
+
+#     return shows_and_lemmas, lemmas_all_shows, lemmas_90per_shows, \
+#         lemmas_80per_shows
 
 
 def clean_lines(sub_file: list[str]) -> list[str]:
@@ -244,117 +313,117 @@ def clean_lines(sub_file: list[str]) -> list[str]:
     return cleaned_lines
 
 
-def pos_counter(words: list, tagger) -> 'str':
-    """
-    Use Fugashi as the tokenizer and generate the part of speech (POS) for
-    a given word
+# def pos_counter(words: list, tagger) -> 'str':
+#     """
+#     Use Fugashi as the tokenizer and generate the part of speech (POS) for
+#     a given word
 
-    Inputs are the words for analysis and tagger object generated via
-    fugashi
+#     Inputs are the words for analysis and tagger object generated via
+#     fugashi
     
-    Output is a dict with parts of speech: occurence pairs
-    """
-    pos_counter = {}
-    for lemma in words:
-        # note: tagger(lemma) -> list of a single fugashi object
-        # tagger(lemma)[0] ->  access that single list element
-        # tagger(lemma)[0].feature.pos1 -> get POS of single fugashi object
-        pos = tagger(lemma)[0].feature.pos1
-        if pos not in pos_counter:
-            pos_counter[pos] = 0
+#     Output is a dict with parts of speech: occurence pairs
+#     """
+#     pos_counter = {}
+#     for lemma in words:
+#         # note: tagger(lemma) -> list of a single fugashi object
+#         # tagger(lemma)[0] ->  access that single list element
+#         # tagger(lemma)[0].feature.pos1 -> get POS of single fugashi object
+#         pos = tagger(lemma)[0].feature.pos1
+#         if pos not in pos_counter:
+#             pos_counter[pos] = 0
 
-        pos_counter[pos] += 1
+#         pos_counter[pos] += 1
 
-    return pos_counter
+#     return pos_counter
 
 
-def lemmas_counter(cleaned_lines: list[str], tagger) -> dict:
-    """
-    Extract the individual words from the cleaned lines, generate and return a list
-    that contains all the unique words and the number of times they occur in the
-    cleaned lines.
+# def lemmas_counter(cleaned_lines: list[str], tagger) -> dict:
+#     """
+#     Extract the individual words from the cleaned lines, generate and return a list
+#     that contains all the unique words and the number of times they occur in the
+#     cleaned lines.
 
-    Parameters:
-    ---
-    cleaned lines: list[str] - a list where each element is the dialogue line
+#     Parameters:
+#     ---
+#     cleaned lines: list[str] - a list where each element is the dialogue line
 
-    tagger: fugashi tagger object - object created using fugashi.Tagger
+#     tagger: fugashi tagger object - object created using fugashi.Tagger
 
-    Returns:
-    ---
-    lemma_count: dict - dictionary object where the lemmas are the keys and values
-    are the number of times they occur in the inputed cleaned lines
-    """
-    lemma_list = []
+#     Returns:
+#     ---
+#     lemma_count: dict - dictionary object where the lemmas are the keys and values
+#     are the number of times they occur in the inputed cleaned lines
+#     """
+#     lemma_list = []
 
-    for line in cleaned_lines:
-        word_list = tagger(line)  # returns a list of the words in sentence
-        for word in word_list:
+#     for line in cleaned_lines:
+#         word_list = tagger(line)  # returns a list of the words in sentence
+#         for word in word_list:
 
-            lemma = word.feature.lemma
+#             lemma = word.feature.lemma
 
-            if lemma == None:  # need to filter None's before .isalpha()
-                continue
+#             if lemma == None:  # need to filter None's before .isalpha()
+#                 continue
             
-            if not lemma.isalpha():  # removes non japanes character lemmas
-                continue
+#             if not lemma.isalpha():  # removes non japanes character lemmas
+#                 continue
 
-            lemma_list.append(lemma)
+#             lemma_list.append(lemma)
 
 
-    # calculate frequency of each lemma, utilizing a dictionary to 
-    # help with counting
-    lemma_counter = {}  # empty dictionary
-    # 
-    for word in lemma_list:
-        if word not in lemma_counter:
-            lemma_counter[word] = 0  # initializing the lemma if not present
+#     # calculate frequency of each lemma, utilizing a dictionary to 
+#     # help with counting
+#     lemma_counter = {}  # empty dictionary
+#     # 
+#     for word in lemma_list:
+#         if word not in lemma_counter:
+#             lemma_counter[word] = 0  # initializing the lemma if not present
 
-        lemma_counter[word] += 1
+#         lemma_counter[word] += 1
     
 
-    return lemma_counter
+#     return lemma_counter
 
 
-def pos_freq_eng_conv(pos_dict, tagger):
-    """
-    Purpose is to take a dictionary variable of parts of speech and their
-    frequency and return an Eng translated list of the POS names and a list
-    of their freq, sorted from most to least freq.
-    """
-    # Separating keys and values from dictionaries
-    freq = list(pos_dict.values())
-    bins = list(pos_dict.keys())
+# def pos_freq_eng_conv(pos_dict, tagger):
+#     """
+#     Purpose is to take a dictionary variable of parts of speech and their
+#     frequency and return an Eng translated list of the POS names and a list
+#     of their freq, sorted from most to least freq.
+#     """
+#     # Separating keys and values from dictionaries
+#     freq = list(pos_dict.values())
+#     bins = list(pos_dict.keys())
 
-    # Resorting the order of the POS from most freq to least freq
-    # copying from https://stackoverflow.com/questions/13668393/python-sorting-two-lists
-    freq, bins = (list(x) for x in zip(*sorted(zip(freq, bins))))
-    freq.reverse()
-    bins.reverse()
+#     # Resorting the order of the POS from most freq to least freq
+#     # copying from https://stackoverflow.com/questions/13668393/python-sorting-two-lists
+#     freq, bins = (list(x) for x in zip(*sorted(zip(freq, bins))))
+#     freq.reverse()
+#     bins.reverse()
 
-    # Conversion of japanese grammar words into english
-    conversion_key = {'連体詞': 'pre-noun adjectival',
-                        '助詞': 'particle',
-                        '動詞': 'verb',
-                        '代名詞': 'pronoun',
-                        '助動詞': 'bound auxiliary',
-                        '名詞': 'noun',
-                        '感動詞': 'interjection',
-                        '形状詞': 'adjectival noun',
-                        '接頭辞': 'prefix',
-                        '形容詞': 'adjective',
-                        '副詞': 'adverb',
-                        '接尾辞': 'suffix',
-                        '補助記号': 'supplementary symbol',
-                        '接続詞': 'conjunction',
-                        '記号': 'symbol' }
+#     # Conversion of japanese grammar words into english
+#     conversion_key = {'連体詞': 'pre-noun adjectival',
+#                         '助詞': 'particle',
+#                         '動詞': 'verb',
+#                         '代名詞': 'pronoun',
+#                         '助動詞': 'bound auxiliary',
+#                         '名詞': 'noun',
+#                         '感動詞': 'interjection',
+#                         '形状詞': 'adjectival noun',
+#                         '接頭辞': 'prefix',
+#                         '形容詞': 'adjective',
+#                         '副詞': 'adverb',
+#                         '接尾辞': 'suffix',
+#                         '補助記号': 'supplementary symbol',
+#                         '接続詞': 'conjunction',
+#                         '記号': 'symbol' }
 
-    bins_eng = []
-    for i in bins:
-        bins_eng.append(conversion_key[i])
+#     bins_eng = []
+#     for i in bins:
+#         bins_eng.append(conversion_key[i])
 
 
-    return bins_eng, freq
+#     return bins_eng, freq
 
 
 # def language_hist_occur(title: str, input_dict: dict, scale:str):
@@ -411,17 +480,17 @@ def pos_freq_eng_conv(pos_dict, tagger):
 #     return
 
 
-def shows_lemma_is_in(shows_and_lemmas):
-    # Making a dict that has lemmas as keys and values as # of shows that it
-    # appears in
-    lemma_show_occurence = {}
+# def shows_lemma_is_in(shows_and_lemmas):
+#     # Making a dict that has lemmas as keys and values as # of shows that it
+#     # appears in
+#     lemma_show_occurence = {}
 
-    for series in shows_and_lemmas:
-        for lemma in shows_and_lemmas[series]:
-            if lemma not in lemma_show_occurence:
-                lemma_show_occurence[lemma] = 0  #adding if not present
+#     for series in shows_and_lemmas:
+#         for lemma in shows_and_lemmas[series]:
+#             if lemma not in lemma_show_occurence:
+#                 lemma_show_occurence[lemma] = 0  #adding if not present
 
-            if lemma in shows_and_lemmas[series]:
-                lemma_show_occurence[lemma] += 1 # increasing count if appears
+#             if lemma in shows_and_lemmas[series]:
+#                 lemma_show_occurence[lemma] += 1 # increasing count if appears
 
-    return lemma_show_occurence
+#     return lemma_show_occurence

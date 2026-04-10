@@ -2,7 +2,6 @@
 Functions for analyzing the contents of the lemma database
 """
 
-
 def percentage_vocab_list(lemma_database, percentage):
     """
     Generate the list of core vocabulary by parsing through all the shows
@@ -24,35 +23,7 @@ def percentage_vocab_list(lemma_database, percentage):
     lemmas_XXper_shows: list - list of lemmas which appear in ~XX% of the shows
     (rounded) in the subtitle folder
     """
-
-    # shows = os.listdir(subtitle_folder) # get show folder names in subtitles/
-
-    # shows_and_lemmas = {}  #initializing empty dictionaries for storage
-
-    # for series in shows:  # begin parsing all series in subtitle folder
-    #     print(f'Show currently parsing: {series}')
-
-    #     path = f'{subtitle_folder}/{series}'
-    #     show_subs_files = os.listdir(path) # get names for each sub file
-
-    #     cleaned_lines = []  #initialize list for storage of lines
-
-    #     for file in show_subs_files:  # allows reading any number of sub files
-    #         with open(f'{path}/{file}', 'r', encoding='UTF-8') as f:  
-    #         # extracting the lines from the subititle file
-    #             file_text = f.readlines()
-
-    #         # unpack and add to total list of cleaned lines
-    #         cleaned_lines = cleaned_lines + [*clean_lines(file_text)]
-
-    #     # getting dict of lemmas present and how many times they occur
-    #     lemma_counts = lemmas_counter(cleaned_lines, tagger)
-
-    #     # linking the lemmas and counts to the show name in a dict format
-    #     shows_and_lemmas[series] = lemma_counts
-
     lemma_show_occurence = shows_lemma_is_in(lemma_database)
-
 
     # extracting out the lemmas that occur in all, 90%, and 80% of the shows 
     # in the show list (i.e. value=# of shows and then percentages of that)
@@ -67,58 +38,6 @@ def percentage_vocab_list(lemma_database, percentage):
     
     if None in lemmas_per_shows:  # strip out None if present in lists
         lemmas_per_shows.remove(None)
-    # shows_90 = round(num_shows*0.9)  # rounds to the nearest integer
-    # lemmas_90per_shows = [lemma for lemma, occurs in 
-    #                     lemma_show_occurence.items() if occurs >= shows_90]
-    
-    # shows_80 = round(num_shows*0.8)
-    # lemmas_80per_shows = [lemma for lemma, occurs in \
-    #                     lemma_show_occurence.items() if occurs >= shows_80]
-
-
-    # # Exporting/saving files to the provided save directory
-    # print('')
-    # print(f'Generating core vocab lists in {save_dir}/\n')
-
-    # # Check if save directory exists, create if doesn't
-    # if not os.path.exists(save_dir):
-    #     print('Save folder not found, creating...\n')
-    #     os.makedirs(save_dir)
-
-    # print('')
-    # print('Beginning write of shows-and-lemmas dictionary...')
-    # # Writing shows_and_lemmas dictionary to file
-    # with open(f'{save_dir}/shows-and-lemmas-dict.txt', 'w', encoding='UTF-8') as \
-    #     save_file:
-    #     save_file.write(json.dumps(shows_and_lemmas))
-
-    # print('File write complete\n')
-
-    # print('Beginning write of lemmas-all-shows list...')
-    # # writing lemmas lists to file
-    # with open(f'{save_dir}/lemmas-in-all-shows.txt', 'w', encoding='UTF-8') as \
-    #     save_file:
-    #     for i in lemmas_all_shows:
-    #         save_file.write(i + '\n')
-    
-    # print('File write complete\n')
-
-    # print('Beginning write of lemmas-90per-shows list...')
-    # with open(f'{save_dir}/lemmas-in-90per-shows.txt', 'w', encoding='UTF-8') as \
-    #     save_file:
-    #     for i in lemmas_90per_shows:
-    #         save_file.write(i + '\n')
-    
-    # print('File write complete\n')
-
-    # print('')
-    # print('Beginning write of lemmas-80per-shows list...')
-    # with open(f'{save_dir}/lemmas-in-80per-shows.txt', 'w', encoding='UTF-8') as \
-    #     save_file:
-    #     for i in lemmas_80per_shows:
-    #         save_file.write(i + '\n')
-
-    # print('File write complete\n')
 
     return lemmas_per_shows
 

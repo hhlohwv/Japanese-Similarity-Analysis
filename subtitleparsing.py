@@ -1,6 +1,5 @@
 """
-Script for defining functions for isolating lines from the subtitle files and
-extracting lemmas and parts of speech from the sentences.
+Script for defining functions for isolating lines from the subtitle files and extracting lemmas and parts of speech from the sentences.
 Also functions for counting frequency and occurence
 """
 import re  # for regular expression searching
@@ -25,7 +24,7 @@ def create_lemma_database(subtitle_folder, tagger):
     shows_and_lemmas: dict - dictionary with show names as keys, with values as the set of lemmas present
     """
 
-    shows = os.listdir(subtitle_folder) # get show folder names in subtitles/
+    shows = os.listdir(subtitle_folder) # get show folder names in the folder
 
     shows_and_lemmas = {}  #initializing empty dictionaries for storage
     

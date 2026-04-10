@@ -51,6 +51,17 @@ Note: if 'pip install package' can't find the path to pip, try 'python -m pip in
 ## Installing Jupyter Notebooks
 For me I used VSCode's Jupyter extension and automated virtual environment creation to set up the python environment. Alternatively information for setting up Jupyter can be found at https://pypi.org/project/jupyter/ and https://jupyter.org/ .
 
+## Install Matplotlib for data visualization
+```shell
+pip install matplotlib
+```
+
+## Install Pandas and others for excel reading
+```shell
+pip install pandas
+pip install openpyxl
+```
+
 ## Installing fugashi 
 For obtaining the lemma's of the words.
 Cython wrapper for the Mecab tool (https://pypi.org/project/fugashi/).

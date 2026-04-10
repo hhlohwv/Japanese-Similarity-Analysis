@@ -1,4 +1,4 @@
-# Background
+# Inroduction
 Immersion learning is a method of foreign language learning (also called acquisition) which emphasizes the learning of a foreign language using native content in the language as the primary study material.
 For Japanese, one source of content for use in immersion learning is anime.
 Anime is attractive content because of the large volume and diversity of media available as well as the presence of subtitles which act as transcripts for the spoken dialogue of an episode.
@@ -35,7 +35,11 @@ References:
 [6] https://youtu.be/19OKvadH_D0?si=G6hqqONS8XB4ntoH
 
 # Repo Contents
-data - subtitle files for shows analyzed, separated as one folder for each show.
+## Data
+Subtitle files for shows analyzed, separated as one folder for each show.
+
+## Supporting Info
+Supplemental Files and Information
 
 jupyter_writeup - Jupyter Notebook file and associated scripts for a more "article" style writeup.
 
@@ -43,6 +47,9 @@ jupyter_writeup - Jupyter Notebook file and associated scripts for a more "artic
 To run the scripts and code in this repo, the python environment was set up as follows:
 
 Note: if 'pip install package' can't find the path to pip, try 'python -m pip install package'.
+
+## Installing Jupyter Notebooks
+For me I used VSCode's Jupyter extension and automated virtual environment creation to set up the python environment. Alternatively information for setting up Jupyter can be found at https://pypi.org/project/jupyter/ and https://jupyter.org/ .
 
 ## Installing fugashi 
 For obtaining the lemma's of the words.

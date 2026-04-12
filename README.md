@@ -41,8 +41,6 @@ Subtitle files for shows analyzed, separated as one folder for each show.
 ## Supporting Info
 Supplemental Files and Information
 
-jupyter_writeup - Jupyter Notebook file and associated scripts for a more "article" style writeup.
-
 # Setting up environment
 To run the scripts and code in this repo, the python environment was set up as follows:
 
@@ -86,12 +84,10 @@ Takes up 1GB of disk space (according to pypi readme).
 ## Installing Mecab
 Japanese language tokenizer and morphological analysis (https://github.com/ikegami-yukino/mecab/releases).
 
-For python 64-bit on Windows, the MeCab 64-bit binary is required (according to the pypi site).
-https://github.com/ikegami-yukino/mecab/releases
-
-Install using the UTF-8 character set option.
-
-Following installing of the above binary if needed, run
 ```shell
 pip install mecab
 ```
+If the MeCab 64-bit binary is required (according to the pypi site).
+https://github.com/ikegami-yukino/mecab/releases
+
+Install using the UTF-8 character set option.
